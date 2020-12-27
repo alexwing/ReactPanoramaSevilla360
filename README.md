@@ -3,6 +3,7 @@
 Seville, around 1870, made in React with the library 
 <a href="https://github.com/farminf/pannellum-react" rel="noreferrer nofollow">Pannellum</a>
 
+![Seville](http://mappuzzle.xyz/sevilla360/ogimage.jpg)
 
 360º photo conversion of the photos taken by Jean Laurent, the French photographer living in Spain who took 7 snapshots to form a great panorama of the river and its surroundings.
 
