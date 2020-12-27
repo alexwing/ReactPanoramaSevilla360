@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pnlm-title-box{
+  font-size: 15px !important;
+}
