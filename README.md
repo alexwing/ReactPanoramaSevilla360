@@ -5,9 +5,9 @@ Seville, around 1870, made in React with the library
 
 ![Seville](http://mappuzzle.xyz/sevilla360/ogimage.jpg)
 
-360º photo conversion of the photos taken by Jean Laurent, the French photographer living in Spain who took 7 snapshots to form a great panorama of the river and its surroundings.
+360º photo conversion of the photos taken by Jean Laurent, the French photographer based in Spain who took 7 snapshots to form a great panorama of the river and its surroundings.
 
-I have obtained as base photos to great resolution, a credible sky has been recreated and added a the false inferior filling, so that it was more integrated, for the colours have been used the following techniques
+From high resolution photos, a credible sky has been recreated and the false filling at the bottom has been added, to make it more integrated. The following techniques have been used for the colours
 
 
 - Coloring the photo (<a href="https://demos.algorithmia.com/colorize-photos" rel="noreferrer nofollow">demos.algorithmia.com/colorize-photos</a>)
