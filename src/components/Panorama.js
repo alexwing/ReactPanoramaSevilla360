@@ -21,6 +21,8 @@ export default class Panorama extends Component {
                 vOffset={0}
                 yaw={0}
                 hfov={80}
+                maxHfov = {120}
+                minHfov= {20}
                 autoLoad
                 showControls={true}
                 onLoad={() => {
