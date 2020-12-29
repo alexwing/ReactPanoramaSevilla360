@@ -39,10 +39,24 @@ export default class Panorama extends Component {
                 />                
                 <Pannellum.Hotspot
                     type="info"
+                    pitch={-7.3}
+                    yaw={-56.3}
+                    text="Iglesia de Omnium Sanctorum"
+                    URL="https://es.wikipedia.org/wiki/Iglesia_de_Omnium_Sanctorum_(Sevilla)"
+                />
+                <Pannellum.Hotspot
+                    type="info"
                     pitch={-7.1}
                     yaw={-48}
                     text="Iglesia de Santa María Magdalena"
                     URL="https://es.wikipedia.org/wiki/Iglesia_de_Santa_Mar%C3%ADa_Magdalena_(Sevilla)"
+                />
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-7.9}
+                    yaw={-45}
+                    text="Torre de Don Fadrique"
+                    URL="https://es.wikipedia.org/wiki/Torre_de_Don_Fadrique_(Sevilla)"
                 />
                 <Pannellum.Hotspot
                     type="info"
@@ -86,6 +100,13 @@ export default class Panorama extends Component {
                     text="Iglesia y Hospital de la Caridad"
                     URL="https://es.wikipedia.org/wiki/Iglesia_y_Hospital_de_la_Caridad_(Sevilla)"
                 />
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-9.7}
+                    yaw={22.5}
+                    text="Real Maestranza de Artillería"
+                    URL="https://es.wikipedia.org/wiki/Real_Maestranza_de_Artiller%C3%ADa_de_Sevilla"
+                />                
                 <Pannellum.Hotspot
                     type="info"
                     pitch={-8}
