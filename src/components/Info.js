@@ -60,7 +60,7 @@ export default class Info extends Component {
                         <Col lg={12} className="info">
                             <p>Conversión a foto 360 de las fotos tomadas por <a href="https://es.wikipedia.org/wiki/J._Laurent" rel="noreferrer nofollow" target="_BLANK">Jean Laurent</a>, el fotógrafo francés afincado en España que tomó 7 instantáneas para formar una gran panorámica del río y su entorno.</p>
                             <h2>Descripción</h2>
-                            <p>A partir de fotos a gran resolución , se ha recreado un cielo creíble y añadido un el falso relleno inferior, para que estuviera más integrado, para los colores han quedado se han usado las siguientes técnicas</p>
+                            <p>A partir de fotos a gran resolución se han coloreado con diferentes algoritmos, luego estos se han mezclado y procesado, se ha recreado un cielo creíble y añadido un el falso relleno inferior para que estuviera más integrado.</p>
                             <h2>Proceso:</h2>
                             <ul>
                                 <li>Colorear la foto (<a href="https://demos.algorithmia.com/colorize-photos" rel="noreferrer nofollow"  target="_BLANK">demos.algorithmia.com/colorize-photos</a>)</li>

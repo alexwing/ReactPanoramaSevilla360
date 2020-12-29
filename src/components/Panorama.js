@@ -29,6 +29,21 @@ export default class Panorama extends Component {
                     console.log("panorama loaded");
                 }}
             >
+
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-8.1}
+                    yaw={-75}
+                    text="Almacen maderas del Rey"
+                    URL="https://es.wikipedia.org/wiki/Archivo:Almacen_maderas_del_Rey_nuevoyviejo.jpg"
+                />                
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-7.1}
+                    yaw={-48}
+                    text="Iglesia de Santa María Magdalena"
+                    URL="https://es.wikipedia.org/wiki/Iglesia_de_Santa_Mar%C3%ADa_Magdalena_(Sevilla)"
+                />
                 <Pannellum.Hotspot
                     type="info"
                     pitch={-7.1}
@@ -73,10 +88,31 @@ export default class Panorama extends Component {
                 />
                 <Pannellum.Hotspot
                     type="info"
+                    pitch={-8}
+                    yaw={32}
+                    text="Aduana de Sevilla"
+                    URL="https://es.wikipedia.org/wiki/Aduana_de_Sevilla"
+                />
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-7}
+                    yaw={34}
+                    text="Real Alcázar"
+                    URL="https://es.wikipedia.org/wiki/Real_Alc%C3%A1zar_de_Sevilla"
+                />
+                <Pannellum.Hotspot
+                    type="info"
                     pitch={-6.8}
                     yaw={39.3}
                     text="Torre de la Plata"
                     URL="https://es.wikipedia.org/wiki/Torre_de_la_Plata"
+                />
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-8}
+                    yaw={52.5}
+                    text="Real Fábrica de Tabacos"
+                    URL="https://es.wikipedia.org/wiki/Real_Fábrica_de_Tabacos_de_Sevilla"
                 />
                 <Pannellum.Hotspot
                     type="info"
@@ -88,9 +124,16 @@ export default class Panorama extends Component {
                 <Pannellum.Hotspot
                     type="info"
                     pitch={-7}
-                    yaw={77}
+                    yaw={76.5}
                     text="Palacio de San Telmo"
                     URL="https://es.wikipedia.org/wiki/Palacio_de_San_Telmo"
+                />
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-6.4}
+                    yaw={99.2}
+                    text="Convento de los Remedios"
+                    URL="https://es.wikipedia.org/wiki/Convento_de_los_Remedios_(Sevilla)"
                 />
             </Pannellum>
 
