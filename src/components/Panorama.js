@@ -36,7 +36,14 @@ export default class Panorama extends Component {
                     yaw={-75}
                     text="Almacen maderas del Rey"
                     URL="https://es.wikipedia.org/wiki/Archivo:Almacen_maderas_del_Rey_nuevoyviejo.jpg"
-                />                
+                /> 
+                <Pannellum.Hotspot
+                    type="info"
+                    pitch={-9.1}
+                    yaw={-68.8}
+                    text="Monumento a la Santísima Trinidad"
+                    URL="http://culturadesevilla.blogspot.com/2019/09/el-desaparecido-monumento-la-santisima.html"
+                />                                 
                 <Pannellum.Hotspot
                     type="info"
                     pitch={-7.3}
