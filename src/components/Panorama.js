@@ -151,6 +151,13 @@ export default class Panorama extends Component {
                 />
                 <Pannellum.Hotspot
                     type="info"
+                    pitch={-12}
+                    yaw={65.4}
+                    text="Desembocadura del Tagarete"
+                    URL="https://es.wikipedia.org/wiki/Tagarete_(arroyo)"
+                />
+                <Pannellum.Hotspot
+                    type="info"
                     pitch={-7}
                     yaw={76.5}
                     text="Palacio de San Telmo"
