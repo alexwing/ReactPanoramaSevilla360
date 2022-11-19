@@ -63,9 +63,7 @@ export default class Info extends Component {
                             <p>A partir de fotos a gran resolución se han coloreado con diferentes algoritmos, luego estos se han mezclado y procesado, se ha recreado un cielo creíble y añadido un el falso relleno inferior para que estuviera más integrado.</p>
                             <h2>Proceso:</h2>
                             <ul>
-                                <li>Colorear la foto (<a href="https://demos.algorithmia.com/colorize-photos" rel="noreferrer nofollow"  target="_BLANK">demos.algorithmia.com/colorize-photos</a>)</li>
-                                <li>Colorear la foto (<a href="https://9may.mail.ru/restoration/?lang=en" rel="noreferrer nofollow"  target="_BLANK">9may.mail.ru/restoration/?lang=en</a>)</li>
-                                <li>Fusionar ambas fotos en color</li>
+                                <li>Colorear la foto (<a href="https://palette.fm/" rel="noreferrer nofollow"  target="_BLANK">palette.fm</a>)</li>
                                 <li>Crear nubes</li>
                                 <li>Crear falso relleno inferior</li>
                                 <li>Limpieza de artefactos y ajuste del color RAW</li>
