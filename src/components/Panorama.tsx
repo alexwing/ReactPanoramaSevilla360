@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import myImage from "../images/360photo.jpg";
 import ReactPannellum from 'react-pannellum';
 import { Container } from 'react-bootstrap';
 
@@ -20,13 +19,23 @@ const Panorama = () => {
         });
         
     }, []);
-
+    
+    const multiRes = {
+        basePath: "./output",
+        path: "/%l/%s%y_%x",
+        fallbackPath: "/fallback/%s",
+        extension: "jpg",
+        tileResolution: 512,
+        maxLevel: 6,
+        cubeResolution: 11456
+    };
 
     const config = {
         autoLoad: true,
         showControls: true,
-        pitch: -5,
+        pitch: -5,  
         type: "equirectangular",
+        debugger: true,
         haov: 200,
         vaov: 110,
         vOffset: 0,
@@ -35,16 +44,20 @@ const Panorama = () => {
         maxHfov: 120,
         minHfov: 20,
         compass: true,
-        hotSpots: hotspots
+        hotSpots: hotspots,
     };
+
+
 
     return hotspots !== null ? (
         <Container fluid className="p-0">
             <ReactPannellum
+                /* imageSource="./images/360photo.jpg" */
                 id="1"
                 sceneId="Sevilla"
-                imageSource={myImage}
                 config={config}
+                multiRes={multiRes}
+                type="multires"
                 style={{
                     width: "100%",
                     height: "100vh"
