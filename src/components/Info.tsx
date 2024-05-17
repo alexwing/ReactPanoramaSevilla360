@@ -131,7 +131,7 @@ const Info = ({ show: showProp, InfoClose }) => {
               </TwitterShareButton>
               <LinkedinShareButton
                 url={url}
-                title={title + " - " + name}
+                title={title}
                 summary={quote}
                 source={title}
               >
