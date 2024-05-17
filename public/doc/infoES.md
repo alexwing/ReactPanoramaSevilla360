@@ -1,0 +1,8 @@
+
+Conversión de foto 360º de las fotos tomadas por Jean Laurent, el fotógrafo francés afincado en España que tomó 7 instantáneas para formar un gran panorama del río y sus alrededores.
+
+Jean Laurent fue un fotógrafo francés que se estableció en España en 1843. En 1856, Laurent abrió un estudio en Madrid, que se convirtió en uno de los más importantes de la ciudad. Laurent fue uno de los primeros fotógrafos en utilizar la técnica del estereoscopio en España. En 1867, Laurent se asoció con su hijo, Jean Laurent y Minier, y en 1879, con su hijo, Jean Laurent y Cía. Laurent fue uno de los fotógrafos más prolíficos de España en el siglo XIX. Su obra abarca una amplia gama de temas, incluyendo retratos, vistas de ciudades y paisajes, y fotografías de arquitectura y arte. Laurent fue uno de los primeros fotógrafos en documentar la arquitectura y el paisaje de España, y su obra es una fuente importante para el estudio de la historia y la cultura españolas del siglo XIX.
+
+Para colorear la foto, se dividió en pequeñas secciones y se colorearon usando diferentes herramientas de inteligencia artificial, luego se unieron para formar la imagen final, se ajustaron los colores para que fueran más realistas y se añadió un cielo creíble.
+
+Para la parte inferior se han utilizando diferentes herramientas de inteligencia artificial, primero se realizarón bocetos burdos y se fueron pasando varias veces por diferentes programas de inteligencia artificial para que fueran más realistas, luego se le aplico superresolución para que tuviera una mayor calidad.
