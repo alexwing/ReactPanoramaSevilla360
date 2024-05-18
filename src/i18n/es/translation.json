@@ -5,7 +5,8 @@
     "light": "Tema Claro",
     "about": "Acerca de",
     "refocus": "Refocalizar",
-    "fullscreen": "Pantalla Completa"
+    "fullscreen": "Pantalla Completa",
+    "pois": "Puntos de interés"
   },
   "ConfirmDialog": {
     "yes": "Sí",

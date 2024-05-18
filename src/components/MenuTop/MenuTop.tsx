@@ -11,7 +11,9 @@ import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
 import { useTranslation } from "react-i18next";
 
-const MenuTop = ({ name }) => {
+const MenuTop = ({ name,
+  handlePois,
+ }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
@@ -81,6 +83,7 @@ const MenuTop = ({ name }) => {
             <PuzzleOptions
               onFullScreen={onFullScreen}
               handleInfo={handleInfo}
+              handlePois={handlePois}
             />
           </Nav>
         </Navbar.Collapse>

@@ -5,7 +5,8 @@
     "light": "Light Theme",
     "about": "About",
     "refocus": "Refocus",
-    "fullscreen": "Fullscreen"
+    "fullscreen": "Fullscreen",
+    "pois": "Points of interest"
   },
   "ConfirmDialog": {
     "yes": "Yes",

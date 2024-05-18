@@ -108,7 +108,9 @@
     left: 10px;
     bottom: 10px;
   }
-
+  .panorama {
+    height: calc(100vh - 38px) !important;
+  }  
 }
 
 @media screen and (max-width: 768px) {

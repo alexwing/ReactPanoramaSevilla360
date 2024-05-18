@@ -13,23 +13,45 @@ import { ConfigService } from "../../services/configService";
 interface PuzzleOptionsProps {
   onFullScreen: () => void;
   handleInfo: () => void;
+  handlePois: () => void;
 }
 
 function PuzzleOptions({
   onFullScreen,
   handleInfo,
+  handlePois,
 }: PuzzleOptionsProps): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
+  const [ poisVisible, setPoisVisible ] = React.useState(true);
 
   const onThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
     setCookie("theme", theme === "dark" ? "light" : "dark", ConfigService.cookieDays);
   };
 
+  const onPoisChange = () => {
+    setPoisVisible(!poisVisible);
+    handlePois();
+  }
+
   const { t } = useTranslation();
   const size = 28;
 
   const buttons = [
+
+    // enable/disable pois
+    { id: "pois",
+      variant: "none",
+      onClickHandler: onPoisChange,
+      tooltip: t("topMenu.pois"),
+      icon: poisVisible ? Icon.InfoCircleFill : Icon.InfoCircle,
+      iconSize: size,
+      iconColor: "",
+      iconClass: "me-2",
+      label: t("topMenu.pois"),
+      labelClass: "d-lg-none",
+      visible: true,
+    },
     { id: "fullscreen",
       variant: "none",
       onClickHandler: onFullScreen,

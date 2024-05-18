@@ -1,22 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import React, { Component } from "react";
-
+import React, { useState } from "react";
 import MenuTop from './components/MenuTop/MenuTop';
 import Panorama from './components/Panorama';
 import "./styles/MapPuzzle.css";
 import "./styles/responsive.css";
+import { Container } from 'react-bootstrap';
 
-class Main extends Component {
+const Main = () => {
+  const [poisVisible, setPoisVisible] = useState(true);
 
-  render() {
-    return (
-      <div>
-        <MenuTop name="Sevilla, cerca de 1870 (Jean Laurent)" />
-        <Panorama />
-      </div>
-    );
-  }
+  return (
+    <Container fluid className="p-0">
+      <MenuTop name="Sevilla, cerca de 1870 (Jean Laurent)" handlePois={() => setPoisVisible(!poisVisible)} />
+      <Panorama enablePois={poisVisible} />
+    </Container>
+  );
 }
 
 export default Main;
