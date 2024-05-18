@@ -4,139 +4,159 @@
     "pitch": -8.1,
     "yaw": -75,
     "text": "Almacen maderas del Rey",
-    "URL": "https://es.wikipedia.org/wiki/Archivo:Almacen_maderas_del_Rey_nuevoyviejo.jpg"
+    "URL": "https://es.wikipedia.org/wiki/Archivo:Almacen_maderas_del_Rey_nuevoyviejo.jpg",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -9.1,
     "yaw": -68.8,
     "text": "Monumento a la Santísima Trinidad",
-    "URL": "http://culturadesevilla.blogspot.com/2019/09/el-desaparecido-monumento-la-santisima.html"
+    "URL": "http://culturadesevilla.blogspot.com/2019/09/el-desaparecido-monumento-la-santisima.html",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7.3,
     "yaw": -56.3,
     "text": "Iglesia de Omnium Sanctorum",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_Omnium_Sanctorum_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_Omnium_Sanctorum_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7.1,
     "yaw": -48,
     "text": "Iglesia de Santa María Magdalena",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_Santa_Mar%C3%ADa_Magdalena_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_Santa_Mar%C3%ADa_Magdalena_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7.7,
     "yaw": -44,
     "text": "Torre de Don Fadrique",
-    "URL": "https://es.wikipedia.org/wiki/Torre_de_Don_Fadrique_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Torre_de_Don_Fadrique_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7.1,
     "yaw": -38,
     "text": "Plaza de toros de Sevilla",
-    "URL": "https://es.wikipedia.org/wiki/Plaza_de_toros_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Plaza_de_toros_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -6.5,
     "yaw": -22.4,
     "text": "Iglesia de la Anunciación",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_la_Anunciaci%C3%B3n_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_la_Anunciaci%C3%B3n_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -6.5,
     "yaw": -13,
     "text": "Iglesia del Salvador",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_del_Salvador_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_del_Salvador_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -6.3,
     "yaw": -3.5,
     "text": "Iglesia de San Alberto",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_San_Alberto_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_de_San_Alberto_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -3,
     "yaw": 11,
     "text": "Catedral de Sevilla",
-    "URL": "https://es.wikipedia.org/wiki/Catedral_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Catedral_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -5.7,
     "yaw": 22.5,
     "text": "Iglesia y Hospital de la Caridad",
-    "URL": "https://es.wikipedia.org/wiki/Iglesia_y_Hospital_de_la_Caridad_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Iglesia_y_Hospital_de_la_Caridad_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -9.7,
     "yaw": 22.5,
     "text": "Real Maestranza de Artillería",
-    "URL": "https://es.wikipedia.org/wiki/Real_Maestranza_de_Artiller%C3%ADa_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Real_Maestranza_de_Artiller%C3%ADa_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -8,
     "yaw": 32,
     "text": "Aduana de Sevilla",
-    "URL": "https://es.wikipedia.org/wiki/Aduana_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Aduana_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7,
     "yaw": 34,
     "text": "Real Alcázar",
-    "URL": "https://es.wikipedia.org/wiki/Real_Alc%C3%A1zar_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Real_Alc%C3%A1zar_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -6.8,
     "yaw": 39.3,
     "text": "Torre de la Plata",
-    "URL": "https://es.wikipedia.org/wiki/Torre_de_la_Plata"
+    "URL": "https://es.wikipedia.org/wiki/Torre_de_la_Plata",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -8,
     "yaw": 52.5,
     "text": "Real Fábrica de Tabacos",
-    "URL": "https://es.wikipedia.org/wiki/Real_Fábrica_de_Tabacos_de_Sevilla"
+    "URL": "https://es.wikipedia.org/wiki/Real_Fábrica_de_Tabacos_de_Sevilla",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -5,
     "yaw": 57,
     "text": "Torre del Oro",
-    "URL": "https://es.wikipedia.org/wiki/Torre_del_Oro"
+    "URL": "https://es.wikipedia.org/wiki/Torre_del_Oro",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -12,
     "yaw": 65.4,
     "text": "Desembocadura del Tagarete",
-    "URL": "https://es.wikipedia.org/wiki/Tagarete_(arroyo)"
+    "URL": "https://es.wikipedia.org/wiki/Tagarete_(arroyo)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -7,
     "yaw": 76.5,
     "text": "Palacio de San Telmo",
-    "URL": "https://es.wikipedia.org/wiki/Palacio_de_San_Telmo"
+    "URL": "https://es.wikipedia.org/wiki/Palacio_de_San_Telmo",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   },
   {
     "type": "info",
     "pitch": -6.4,
     "yaw": 99.2,
     "text": "Convento de los Remedios",
-    "URL": "https://es.wikipedia.org/wiki/Convento_de_los_Remedios_(Sevilla)"
+    "URL": "https://es.wikipedia.org/wiki/Convento_de_los_Remedios_(Sevilla)",
+    "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
   }
 ]

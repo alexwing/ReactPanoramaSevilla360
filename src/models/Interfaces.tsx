@@ -1,12 +1,9 @@
-
-export class Languages  {
-
+export class Languages {
   lang!: string;
   langname!: string;
   autonym!: string;
   active!: number;
   rtl!: number;
-
 }
 
 export class CustomWiki {
@@ -14,7 +11,6 @@ export class CustomWiki {
   cartodb_id!: number;
   wiki!: string;
 }
-
 
 export interface WikiInfoPiece {
   title: string;
@@ -48,15 +44,25 @@ export interface FlagsIcons {
   name: string;
   url: string;
 }
-  
+
 export interface AlertMessageProps {
   show: boolean;
   alertMessage: AlertModel;
   onHide: () => void;
-  autoClose?: number ;
+  autoClose?: number;
 }
 
 export interface ServiceWorkerConfig {
   onUpdate: (registration: ServiceWorkerRegistration) => void;
   onSuccess: (registration: ServiceWorkerRegistration) => void;
+}
+
+export interface Hotspot {
+  id: string;
+  pitch: number;
+  yaw: number;
+  type: string;
+  text: string;
+  URL: string;
+  cssClass?: string;
 }

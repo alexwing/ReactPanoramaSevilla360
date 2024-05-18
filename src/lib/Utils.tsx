@@ -295,3 +295,10 @@ export function cleanUrlParams(url: string): string {
     return url;
   }
 }
+
+export function setVisibleHostspots(visible: boolean) {
+  const hotspotsElelemts = document.querySelectorAll(".pnlm-hotspot-base");
+  hotspotsElelemts.forEach((hotspot) => {
+    (hotspot as HTMLElement).style.display = visible ? "block" : "none";
+  });
+}
