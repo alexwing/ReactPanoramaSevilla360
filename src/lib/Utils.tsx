@@ -154,6 +154,30 @@ export function langName(piece: WikiInfoLang): string {
 }
 
 /**
+ * Returns the languages in the application as an array of WikiInfoLang objects.
+ * @returns An array of WikiInfoLang objects.
+ */
+export function getListLanguages(): WikiInfoLang[] {
+  const wikiInfoLang: WikiInfoLang[] = [
+    {
+      lang: "es",
+      langname: "Español",
+      id: "es",
+      autonym: "Español",
+      rtl: false,
+    },
+    {
+      lang: "en",
+      langname: "English",
+      id: "en",
+      autonym: "English",
+      rtl: false,
+    },
+  ];
+  return wikiInfoLang;
+}
+
+/**
  * Gets the current language based on the user's selected language and an array of WikiInfoLang objects.
  * @param langs - An array of WikiInfoLang objects.
  * @returns The current language as a string.

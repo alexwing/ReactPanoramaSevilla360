@@ -17,6 +17,7 @@
     "react-i18next": "^12.3.1",
     "react-markdown": "^6.0.2",
     "react-query": "^3.39.3",
+    "react-responsive": "^9.0.2",
     "react-pannellum": "^0.2.14",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
