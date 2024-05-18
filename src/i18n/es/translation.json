@@ -1,0 +1,32 @@
+{
+  "topMenu": {
+    "wikiInfo": "Información de Wiki",
+    "dark": "Tema Oscuro",
+    "light": "Tema Claro",
+    "about": "Acerca de",
+    "refocus": "Refocalizar",
+    "fullscreen": "Pantalla Completa"
+  },
+  "ConfirmDialog": {
+    "yes": "Sí",
+    "no": "No"
+  },
+  "info": {
+    "share": "Comparte Sevilla, cerca de 1870 (Jean Laurent)",
+    "quote": "Sevilla, cerca de 1870 (Jean Laurent) es un sitio web experimental, es un visor de panoramas de 360 grados de la ciudad de Sevilla en el siglo XIX."
+  },
+  "wikiInfo": {
+    "title": "Artículo de la Wikipedia para",
+    "notFound": "No se encontraron datos en la Wikipedia"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "share": {
+      "title": "Sevilla, cerca de 1870 (Jean Laurent)",
+      "subtitle": "Visor de panoramas",
+      "hashtag": "panorama, Sevilla, 1870, Jean Laurent, 360, historia, educación, cultura, patrimonio, turismo"
+    },
+    "donate": "Donar",
+    "privacy": "política de privacidad"
+  }
+}

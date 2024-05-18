@@ -11,7 +11,7 @@ const MenuTop = ({ name }) => {
     setShowInfo(true);
   }
 
-  const InfoCloseHandle = () => {
+  const handleCancel = () => {
     setShowInfo(false);
   }
 
@@ -24,7 +24,7 @@ const MenuTop = ({ name }) => {
           <Button id="info" variant="outline-secondary" onClick={handleInfo}><span className="navbar-info-icon"></span> Info</Button>
         </Form>
       </Navbar.Collapse>
-      <Info show={showInfo} InfoClose={InfoCloseHandle}/>
+      <Info name={name} show={showInfo} InfoClose={handleCancel} />
     </Navbar>
   );
 }

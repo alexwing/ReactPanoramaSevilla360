@@ -21,7 +21,7 @@ const Panorama = () => {
     }, []);
     
     const multiRes = {
-        basePath: "./output",
+        basePath: "./360photo",
         path: "/%l/%s%y_%x",
         fallbackPath: "/fallback/%s",
         extension: "jpg",

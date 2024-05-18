@@ -17,8 +17,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.vscode
 
-/public/output*
+/public/360photo*
 /public/images
 
 npm-debug.log*

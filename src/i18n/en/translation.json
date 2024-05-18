@@ -1,0 +1,32 @@
+{
+  "topMenu": {
+    "wikiInfo": "Wiki Info",
+    "dark": "Dark Theme",
+    "light": "Light Theme",
+    "about": "About",
+    "refocus": "Refocus",
+    "fullscreen": "Fullscreen"
+  },
+  "ConfirmDialog": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "info": {
+    "share": "Share Seville, around 1870 (Jean Laurent)",
+    "quote": "Seville, around 1870 (Jean Laurent) is an experimental website, a 360-degree panorama viewer of the city of Seville in the 19th century."
+  },
+  "wikiInfo": {
+    "title": "Wikipedia Article for",
+    "notFound": "No data found in Wikipedia"
+  },
+  "common": {
+    "loading": "Loading...",
+    "share": {
+      "title": "Seville, around 1870 (Jean Laurent)",
+      "subtitle": "Panorama viewer",
+      "hashtag": "panorama, Seville, 1870, Jean Laurent, 360, history, education, culture, heritage, tourism"
+    },
+    "donate": "Donate",
+    "privacy": "privacy policy"
+  }
+}

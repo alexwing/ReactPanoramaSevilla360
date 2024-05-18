@@ -1,48 +1,48 @@
 
-.modal-backdrop.show {
-    opacity: .1;
-  }
-  .modal-header {
-    background-color: lightskyblue;
-  }
-  .modal-body{
-    padding: 0 1rem;
-  }
-  .modal-body p{
-    margin-bottom: 0px;
-  }
+.infoModal .modal-body {
+  padding: 0 1rem;
+}
+.infoModal .modal-body p {
+  margin-bottom: 0px;
+}
 
-  .info{
-    text-align: justify;
-    padding: 1.5em;
-    margin-top: 1em;
-    color:#555;
-    max-height: 500px;
-    overflow-y: scroll;
-  }  
-  .info p{
-    padding-bottom: 0.5em;
-  }
-  .info h2{
-    padding-bottom: 0.25em;
-    font-weight: bold;
-    font-size: 1.5em;  
-  }
-  .share{
-    text-align: center;
-    padding: 1.5em;
-  }
-  .share h4{
-    padding-bottom: 0.5em;
-  }
-  .legendInfo{
-    text-align: left;
-    font-size: small;
-  }
+.infoModal .info {
+  text-align: justify;
+  padding: 1.5em;
+  color: #555;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+[data-bs-theme="dark"] .infoModal .info {
+  color: #aaa;
+}
+.infoModal .info p {
+  padding-bottom: 0.5em;
+}
+.infoModal .info h2 {
+  padding-bottom: 0.25em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.infoModal .info h3 {
+  padding-bottom: 0.25em;
+  font-size: 1.15em;
+}
+.infoModal .share {
+  text-align: center;
+  padding: 1.5em;
+}
+.infoModal .share h4 {
+  padding-bottom: 0.5em;
+}
+.infoModal .legendInfo {
+  text-align: left;
+  font-size: small;
+}
 
-  .legendInfo  img {
-    pointer-events: none;
-    height:30px;
-    width:30px;
-    opacity: 0.7;
-  }
+.infoModal .legendInfo img {
+  pointer-events: none;
+  height: 30px;
+  width: 30px;
+  opacity: 0.7;
+}

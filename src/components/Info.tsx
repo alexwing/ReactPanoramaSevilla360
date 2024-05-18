@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import "../i18n/config";
+import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
 
-import { getUrl } from "../lib/Utils";
+import { getLang, getUrl } from "../lib/Utils";
+import { Check, Heart, ShieldShaded, Github } from "react-bootstrap-icons";
 import "./Info.css";
 import {
   FacebookShareButton,
@@ -20,102 +24,104 @@ import {
   TelegramShareButton,
   TelegramIcon,
 } from "react-share";
+import { PuzzleService } from "../services/puzzleService";
+import Privacy from "./Privacy";
+//to function hooks
 
-const Info = ({ show: showProp, InfoClose }) => {
-  const [show, setShow] = useState(showProp);
+interface InfoProps {
+  show: boolean;
+  InfoClose: () => void;
+  name: string;
+}
+
+function Info({
+  show = false,
+  InfoClose,
+  name,
+}: InfoProps): JSX.Element | null {
+  const [showIn, setShowIn] = useState(false);
+  const [markdown, setMarkdown] = useState("");
+  const { t } = useTranslation();
+  const [showInPrivacy, setShowInPrivacy] = useState(false);
 
   useEffect(() => {
-    setShow(showProp);
-  }, [showProp]);
+    setShowIn(show);
+  }, [show]);
 
-  const handleClose = () => {
-    setShow(false);
+  function handleClose() {
     InfoClose();
-  };
+  }
 
-  let url = "http://" + getUrl() + "/sevilla360";
-  let quote =
-    "Conversión a foto 360 de las fotos tomadas por Jean Laurent, el fotógrafo francés afincado en España que tomó 7 instantáneas para formar una gran panorámica del río y su entorno.";
-  let hashtag = "education,history,Sevilla,panorama";
-  let title = "Sevilla, cerca de 1870.";
+  useEffect(() => {
+    if (!showIn) {
+      return;
+    }
+    const lang = getLang() === "es" ? "ES" : "EN";
+    console.log("lang service", getLang());
+    console.log("lang", lang);
+    PuzzleService.getResource(`./doc/about${lang}.md`).then((response) => {
+      setMarkdown(response);
+    });
+  }, [showIn]);
 
-  return (
-    <div>
+  const url = "http://" + getUrl()+"/sevilla360/";
+  const quote = t("info.quote");
+  const hashtag = t("common.share.hashtag");
+  const title = t("common.share.title");
+  
+  return !markdown ? null : (
+    <React.Fragment>
+      <Privacy showIn={showInPrivacy} setShowIn={setShowInPrivacy} />
       <Modal
-        show={show}
+        show={showIn && !showInPrivacy}
         size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         onHide={handleClose}
+        className="infoModal"
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            Sevilla, cerca de 1870.
+            {t("common.share.title")} <span className="hide-xs d-none d-sm-inline"> - {t("common.share.subtitle")}</span>
+            <a
+              rel="noreferrer"
+              style={{ position: "absolute", right: "20px" }}
+              onClick={() => setShowInPrivacy(true)}
+            >
+              <ShieldShaded size={22} className="me-2" />
+              {t("common.privacy")}
+            </a>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="info">
           <Row>
-            <Col lg={12} className="info">
+            <Col lg={12}>
+              <ReactMarkdown>{markdown}</ReactMarkdown>
               <p>
-                Conversión a foto 360 de las fotos tomadas por{" "}
+                The project repository can be found at:&nbsp;
                 <a
-                  href="https://es.wikipedia.org/wiki/J._Laurent"
-                  rel="noreferrer nofollow"
-                  target="_BLANK"
+                  href="https://github.com/alexwing/ReactPanoramaSevilla360"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Jean Laurent
+                  https://github.com/alexwing/ReactPanoramaSevilla360
                 </a>
-                , el fotógrafo francés afincado en España que tomó 7
-                instantáneas para formar una gran panorámica del río y su
-                entorno.
               </p>
-              <h2>Descripción</h2>
               <p>
-                A partir de fotos a gran resolución se han coloreado con
-                diferentes algoritmos, luego estos se han mezclado y procesado,
-                se ha recreado un cielo creíble y añadido un el falso relleno
-                inferior para que estuviera más integrado.
+                More info in:&nbsp;
+                <a
+                  href="https://aaranda.es/en/mappuzzle-gl-en/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  aaranda.es
+                </a>
               </p>
-              <h2>Proceso:</h2>
-              <ul>
-                <li>
-                  Colorear la foto (
-                  <a
-                    href="https://palette.fm/"
-                    rel="noreferrer nofollow"
-                    target="_BLANK"
-                  >
-                    palette.fm
-                  </a>
-                  )
-                </li>
-                <li>Crear nubes</li>
-                <li>Crear falso relleno inferior</li>
-                <li>Limpieza de artefactos y ajuste del color RAW</li>
-                <li>
-                  Creación de la aplicación React usando el plugin{" "}
-                  <a
-                    href="https://github.com/farminf/pannellum-react"
-                    rel="noreferrer nofollow"
-                    target="_BLANK"
-                  >
-                    Pannellum
-                  </a>
-                </li>
-              </ul>
-              Codigo fuente del proyecto en{" "}
-              <a
-                href="https://github.com/alexwing/ReactPanoramaSevilla360"
-                rel="noreferrer nofollow"
-                target="_BLANK"
-              >
-                Github
-              </a>
             </Col>
           </Row>
           <Row>
             <Col lg={12} className="share">
-              <h4>Compartelo</h4>
+              <h4>{t("info.share")}</h4>
               <EmailShareButton url={url} subject={title} body={quote}>
                 <EmailIcon size={48} round={true} />
               </EmailShareButton>
@@ -131,7 +137,7 @@ const Info = ({ show: showProp, InfoClose }) => {
               </TwitterShareButton>
               <LinkedinShareButton
                 url={url}
-                title={title}
+                title={title + " - " + name}
                 summary={quote}
                 source={title}
               >
@@ -147,11 +153,34 @@ const Info = ({ show: showProp, InfoClose }) => {
           </Row>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClose}>Ok</Button>
+          <div style={{ position: "absolute", left: "20px" }}>
+            <Button
+              href="https://github.com/sponsors/alexwing"
+              target="_blank"
+              rel="noreferrer"
+              variant="danger"
+            >
+              <Heart size={22} className="me-2" />
+              {t("common.donate")}
+            </Button>
+            <Button
+              href="https://github.com/alexwing/ReactPanoramaSevilla360"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="none"
+              className="ms-2"
+            >
+              <Github size={22} className="me-2" />
+              Github
+            </Button>
+          </div>
+          <Button onClick={handleClose}>
+            <Check size={22} className="me-2" />
+            Ok
+          </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </React.Fragment>
   );
-};
-
+}
 export default Info;
