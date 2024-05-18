@@ -61,13 +61,7 @@ const MenuTop = ({ name }) => {
     setLang(lang);
   };
 
-  const onFullScreen = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      document.documentElement.requestFullscreen();
-    }
-  };
+
 
   const handlePois = () => {
     setPoisVisible(!poisVisible);
@@ -90,7 +84,6 @@ const MenuTop = ({ name }) => {
             currentLang={currentLang}
           ></LangSelector>
             <PuzzleOptions
-              onFullScreen={onFullScreen}
               handleInfo={handleInfo}
               handlePois={handlePois}
             />

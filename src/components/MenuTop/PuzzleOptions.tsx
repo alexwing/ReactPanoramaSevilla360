@@ -11,18 +11,17 @@ import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
 
 interface PuzzleOptionsProps {
-  onFullScreen: () => void;
   handleInfo: () => void;
   handlePois: () => void;
 }
 
 function PuzzleOptions({
-  onFullScreen,
   handleInfo,
   handlePois,
 }: PuzzleOptionsProps): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
   const [ poisVisible, setPoisVisible ] = React.useState(true);
+  const [ fullScreen, setFullScreen ] = React.useState(false);
 
   const onThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -33,6 +32,15 @@ function PuzzleOptions({
     setPoisVisible(!poisVisible);
     handlePois();
   }
+
+  const onFullScreen = () => {
+    setFullScreen(!fullScreen);
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+  };
 
   const { t } = useTranslation();
   const size = 28;
@@ -56,7 +64,7 @@ function PuzzleOptions({
       variant: "none",
       onClickHandler: onFullScreen,
       tooltip: t("topMenu.fullscreen"),
-      icon: Icon.Fullscreen,
+      icon:  fullScreen ? Icon.FullscreenExit : Icon.Fullscreen,
       iconSize: size,
       iconColor: "",
       iconClass: "me-2",
