@@ -31,13 +31,11 @@ import Privacy from "./Privacy";
 interface InfoProps {
   show: boolean;
   InfoClose: () => void;
-  name: string;
 }
 
 function Info({
   show = false,
   InfoClose,
-  name,
 }: InfoProps): JSX.Element | null {
   const [showIn, setShowIn] = useState(false);
   const [markdown, setMarkdown] = useState("");
@@ -82,7 +80,7 @@ function Info({
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            {t("common.share.title")} <span className="hide-xs d-none d-sm-inline"> - {t("common.share.subtitle")}</span>
+            {t("topMenu.title")} <span className="hide-xs d-none d-sm-inline"> - {t("common.share.subtitle")}</span>
             <a
               rel="noreferrer"
               style={{ position: "absolute", right: "20px" }}
@@ -137,7 +135,7 @@ function Info({
               </TwitterShareButton>
               <LinkedinShareButton
                 url={url}
-                title={title + " - " + name}
+                title={title}
                 summary={quote}
                 source={title}
               >

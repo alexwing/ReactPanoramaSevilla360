@@ -52,7 +52,7 @@ function PuzzleOptions({
       variant: "none",
       onClickHandler: onPoisChange,
       tooltip: t("topMenu.pois"),
-      icon: poisVisible ? Icon.InfoCircleFill : Icon.InfoCircle,
+      icon: poisVisible ? Icon.GeoAltFill : Icon.GeoAlt,
       iconSize: size,
       iconColor: "",
       iconClass: "me-2",

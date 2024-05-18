@@ -10,7 +10,7 @@ const Main = () => {
 
   return (
     <Container fluid className="p-0">
-      <MenuTop name="Sevilla, cerca de 1870 (Jean Laurent)"/>
+      <MenuTop/>
       <Panorama />
     </Container>
   );

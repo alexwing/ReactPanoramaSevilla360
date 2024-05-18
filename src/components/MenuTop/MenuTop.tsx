@@ -11,7 +11,7 @@ import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
 import { useTranslation } from "react-i18next";
 
-const MenuTop = ({ name }) => {
+const MenuTop = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
@@ -73,7 +73,7 @@ const MenuTop = ({ name }) => {
       <Navbar bg={theme} expand="lg">
         <Navbar.Brand>
           <img src="./logo192.png" alt="" />
-          {name}
+          { t("topMenu.title") }
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -90,7 +90,7 @@ const MenuTop = ({ name }) => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Info name={name} show={showInfo} InfoClose={handleCancel} />
+      <Info show={showInfo} InfoClose={handleCancel} />
     </React.Fragment>
   );
 };
