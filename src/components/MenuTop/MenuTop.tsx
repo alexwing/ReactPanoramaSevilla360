@@ -15,7 +15,6 @@ const MenuTop = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
-  const [lang, setLang] = useState("");
   const { t, i18n } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const [poisVisible, setPoisVisible] = useState(true);
@@ -24,7 +23,6 @@ const MenuTop = () => {
   useEffect(() => {
     const langAux = getLang();
     i18n.changeLanguage(langAux);
-    setLang(langAux);
     setShowInfo(false);
     getLanguages();
   }, []);
@@ -54,12 +52,8 @@ const MenuTop = () => {
     //change lang in i18n
     i18n.changeLanguage(lang);
     setCurrentLang(getCurrentLang(langs));
-    onLangChange(lang);
   };
 
-  const onLangChange = (lang: string) => {
-    setLang(lang);
-  };
 
 
 
