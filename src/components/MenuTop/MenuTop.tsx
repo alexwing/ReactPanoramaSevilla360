@@ -5,21 +5,21 @@ import ThemeContext from "../../components/ThemeProvider";
 import { Nav } from "react-bootstrap";
 import PuzzleOptions from "./PuzzleOptions";
 import { WikiInfoLang } from "../../models/Interfaces";
-import { getCurrentLang, getLang, getListLanguages } from "../../lib/Utils";
+import { getCurrentLang, getLang, getListLanguages, setVisibleHostspots } from "../../lib/Utils";
 import LangSelector from "../LangSelector";
 import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
 import { useTranslation } from "react-i18next";
 
-const MenuTop = ({ name,
-  handlePois,
- }) => {
+const MenuTop = ({ name }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
   const [lang, setLang] = useState("");
   const { t, i18n } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const [poisVisible, setPoisVisible] = useState(true);
+
 
   useEffect(() => {
     const langAux = getLang();
@@ -28,6 +28,10 @@ const MenuTop = ({ name,
     setShowInfo(false);
     getLanguages();
   }, []);
+  
+  useEffect(() => {
+    setVisibleHostspots(poisVisible);
+  }, [poisVisible]);
 
   const getLanguages = () => {
     const wikiInfoLang: WikiInfoLang[] = getListLanguages();
@@ -64,6 +68,11 @@ const MenuTop = ({ name,
       document.documentElement.requestFullscreen();
     }
   };
+
+  const handlePois = () => {
+    setPoisVisible(!poisVisible);
+  }
+
 
   return (
     <React.Fragment>

@@ -7,12 +7,11 @@ import "./styles/responsive.css";
 import { Container } from 'react-bootstrap';
 
 const Main = () => {
-  const [poisVisible, setPoisVisible] = useState(true);
 
   return (
     <Container fluid className="p-0">
-      <MenuTop name="Sevilla, cerca de 1870 (Jean Laurent)" handlePois={() => setPoisVisible(!poisVisible)} />
-      <Panorama enablePois={poisVisible} />
+      <MenuTop name="Sevilla, cerca de 1870 (Jean Laurent)"/>
+      <Panorama />
     </Container>
   );
 }

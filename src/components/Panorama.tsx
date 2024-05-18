@@ -3,9 +3,8 @@ import ReactPannellum, {
   getViewer,
   mouseEventToCoords,
 } from "react-pannellum";
-import { setVisibleHostspots } from "../lib/Utils";
 
-const Panorama = ({ enablePois }) => {
+const Panorama = () => {
   const [hotspots, setHotspots] = useState(null);
   const ref = useRef();
 
@@ -59,9 +58,7 @@ const Panorama = ({ enablePois }) => {
       });
   }, []);
 
-  useEffect(() => {
-    setVisibleHostspots(enablePois);
-  }, [enablePois]);
+
 
   const multiResColor = {
     basePath: "./360photo",
