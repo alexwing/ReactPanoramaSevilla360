@@ -12,6 +12,7 @@
   }
   #flagsQuiz,
   .lang-selector,
+  .panorama-selector,
   #puzzleSelect,
   .navbar .btn-none {
     margin: 0;
@@ -29,6 +30,7 @@
   }
   [data-bs-theme="dark"]   #flagsQuiz,
   [data-bs-theme="dark"]   .lang-selector,
+  [data-bs-theme="dark"]   .panorama-selector,
   [data-bs-theme="dark"]   #puzzleSelect,
   [data-bs-theme="dark"]   .navbar .btn-none {
     background-color: transparent;
@@ -46,22 +48,23 @@
 
   #flagsQuiz:hover,
   .lang-selector:hover,
+  .panorama-selector:hover,
   #puzzleSelect:hover,
   .navbar .btn-none:hover {
     background-color: #ffbf40;
     border-color: #ffbf40;
     color: #333;
   }
-  .lang-selector .a {
+  .lang-selector .a, .panorama-selector .a {
     padding: 0;
     margin: -3px 0;
   }
-  .lang-selector a.dropdown-item {
+  .lang-selector a.dropdown-item, .panorama-selector a.dropdown-item{
     padding: 0.5em;
     margin: -3px 0;
     border-bottom: 1px solid lightgray;
   }
-  .lang-selector .nav-link {
+  .lang-selector .nav-link, .panorama-selector .nav-link {
     padding: 0;
   } 
 

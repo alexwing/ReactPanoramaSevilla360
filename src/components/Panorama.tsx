@@ -3,7 +3,12 @@ import ReactPannellum from "react-pannellum";
 import { PanoramaMultiRes } from "../models/Interfaces";
 import axios from "axios";
 
-const Panorama = ({ multiResScene }: { multiResScene: PanoramaMultiRes }) => {
+interface PanoramaProps {
+  id: string;
+  multiResScene: PanoramaMultiRes;
+}
+
+const Panorama = ({ id, multiResScene }: PanoramaProps) => {
   const [hotspots, setHotspots] = useState(null);
 
   useEffect(() => {
@@ -39,7 +44,7 @@ const Panorama = ({ multiResScene }: { multiResScene: PanoramaMultiRes }) => {
     <ReactPannellum
       className="panorama"
       /* imageSource="./images/360photo.jpg" */
-      id={multiResScene.id}
+      id={id}
       sceneId={multiResScene.key}
       config={config}
       multiRes={multiResScene}
