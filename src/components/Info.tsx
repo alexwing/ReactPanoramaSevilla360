@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Row, Col, Figure } from "react-bootstrap";
 import "../i18n/config";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
@@ -33,10 +32,7 @@ interface InfoProps {
   InfoClose: () => void;
 }
 
-function Info({
-  show = false,
-  InfoClose,
-}: InfoProps): JSX.Element | null {
+function Info({ show = false, InfoClose }: InfoProps): JSX.Element | null {
   const [showIn, setShowIn] = useState(false);
   const [markdown, setMarkdown] = useState("");
   const { t } = useTranslation();
@@ -62,11 +58,11 @@ function Info({
     });
   }, [showIn]);
 
-  const url = "http://" + getUrl()+"/sevilla360/";
+  const url = "http://" + getUrl() + "/sevilla360/";
   const quote = t("info.quote");
   const hashtag = t("common.share.hashtag");
   const title = t("common.share.title");
-  
+
   return !markdown ? null : (
     <React.Fragment>
       <Privacy showIn={showInPrivacy} setShowIn={setShowInPrivacy} />
@@ -80,7 +76,11 @@ function Info({
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            {t("topMenu.title")} <span className="hide-xs d-none d-sm-inline"> - {t("common.share.subtitle")}</span>
+            {t("topMenu.title")}{" "}
+            <span className="hide-xs d-none d-sm-inline">
+              {" "}
+              - {t("common.share.subtitle")}
+            </span>
             <a
               rel="noreferrer"
               style={{ position: "absolute", right: "20px" }}
@@ -95,8 +95,30 @@ function Info({
           <Row>
             <Col lg={12}>
               <ReactMarkdown>{markdown}</ReactMarkdown>
+              <Row>
+                <Col lg={6} className="p-3">
+                  <Figure>
+                    <Figure.Image
+                      src="./images/1860_01.jpg"
+                      alt="Sevilla 1860"
+                      className="img-fluid"
+                    />
+                    <Figure.Caption>{t("info.caption1")}</Figure.Caption>
+                  </Figure>
+                </Col>
+                <Col lg={6} className="p-3">
+                  <Figure>
+                    <Figure.Image
+                      src="./images/1860_02.jpg"
+                      alt="Sevilla 1860"
+                      className="img-fluid"
+                    />
+                    <Figure.Caption>{t("info.caption2")}</Figure.Caption>
+                  </Figure>
+                </Col>
+              </Row>
               <p>
-                The project repository can be found at:&nbsp;
+                {t("info.github")}:&nbsp;
                 <a
                   href="https://github.com/alexwing/ReactPanoramaSevilla360"
                   target="_blank"
@@ -106,7 +128,7 @@ function Info({
                 </a>
               </p>
               <p>
-                More info in:&nbsp;
+              {t("info.moreInfo")}:&nbsp;
                 <a
                   href="https://aaranda.es/en/mappuzzle-gl-en/"
                   target="_blank"

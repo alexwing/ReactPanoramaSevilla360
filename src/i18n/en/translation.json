@@ -15,7 +15,11 @@
   },
   "info": {
     "share": "Share Seville, around 1870 (Jean Laurent)",
-    "quote": "Seville, around 1870 (Jean Laurent) is an experimental website, a 360-degree panorama viewer of the city of Seville in the 19th century."
+    "quote": "Seville, around 1870 (Jean Laurent) is an experimental website, a 360-degree panorama viewer of the city of Seville in the 19th century.",
+    "caption1": "General view from Triana, J.Laurent",
+    "caption2": "View from the Torre del Oro, J.Laurent",
+    "moreInfo": " More info in:",
+    "github": "The project repository can be found at"
   },
   "wikiInfo": {
     "title": "Wikipedia Article for",

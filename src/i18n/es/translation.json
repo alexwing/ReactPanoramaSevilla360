@@ -15,7 +15,11 @@
   },
   "info": {
     "share": "Comparte Sevilla, cerca de 1870 (Jean Laurent)",
-    "quote": "Sevilla, cerca de 1870 (Jean Laurent) es un sitio web experimental, es un visor de panoramas de 360 grados de la ciudad de Sevilla en el siglo XIX."
+    "quote": "Sevilla, cerca de 1870 (Jean Laurent) es un sitio web experimental, es un visor de panoramas de 360 grados de la ciudad de Sevilla en el siglo XIX.",
+    "caption2": "Vista desde la torre del Oro, J.Laurent",
+    "caption1": "Vista general desde Triana, J.Laurent",
+    "moreInfo": "Más información en:",
+    "github": "Puede encontrar el repositorio del proyecto en"
   },
   "wikiInfo": {
     "title": "Artículo de la Wikipedia para",
