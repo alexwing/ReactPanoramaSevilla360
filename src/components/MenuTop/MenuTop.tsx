@@ -4,14 +4,20 @@ import Info from "../Info";
 import ThemeContext from "../../components/ThemeProvider";
 import { Nav } from "react-bootstrap";
 import PuzzleOptions from "./PuzzleOptions";
-import { WikiInfoLang } from "../../models/Interfaces";
+import { PanoramaMultiRes, WikiInfoLang } from "../../models/Interfaces";
 import { getCurrentLang, getLang, getListLanguages, setVisibleHostspots } from "../../lib/Utils";
 import LangSelector from "../LangSelector";
 import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
 import { useTranslation } from "react-i18next";
+import PanoramaSelector from "../PanoramaSelector";
 
-const MenuTop = () => {
+interface MenuTopProps {
+  multiRes: PanoramaMultiRes[];
+  handleMultiRes: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+}
+
+const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
@@ -71,6 +77,11 @@ const MenuTop = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <PanoramaSelector 
+            scenes={multiRes}
+            currentScene={multiRes[0].title}
+            onSelectScene={handleMultiRes}
+          />
           <Nav className="ms-auto">
           <LangSelector
             langs={langs}

@@ -66,3 +66,14 @@ export interface Hotspot {
   URL: string;
   cssClass?: string;
 }
+
+export interface PanoramaMultiRes {
+  title: string;
+  basePath: string;
+  path: string;
+  fallbackPath: string;
+  extension: string;
+  tileResolution: number;
+  maxLevel: number;
+  cubeResolution: number;
+}

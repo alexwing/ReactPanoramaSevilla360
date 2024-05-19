@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactPannellum, {
   getViewer,
   mouseEventToCoords,
 } from "react-pannellum";
+import { PanoramaMultiRes } from "../models/Interfaces";
 
-const Panorama = () => {
+const Panorama = ({sceneSelected} : {sceneSelected: PanoramaMultiRes}) => {
   const [hotspots, setHotspots] = useState(null);
   const ref = useRef();
 
@@ -28,20 +29,6 @@ const Panorama = () => {
     isLoaded = true;
   }, [ref]);
 
-  const scenesArray = useMemo(
-    () => [
-      {
-        id: "Color",
-        name: "Seville, around 1870 (Jean Laurent) - Color",
-      },
-      {
-        id: "BN",
-        name: "Seville, around 1870 (Jean Laurent) - Black & White",
-      },
-    ],
-    []
-  );
-
   useEffect(() => {
     fetch("./hotspots.json")
       .then((response) => {
@@ -57,28 +44,6 @@ const Panorama = () => {
         console.log("Error al leer el archivo JSON.");
       });
   }, []);
-
-
-
-  const multiResColor = {
-    basePath: "./360photo",
-    path: "/%l/%s%y_%x",
-    fallbackPath: "/fallback/%s",
-    extension: "jpg",
-    tileResolution: 512,
-    maxLevel: 6,
-    cubeResolution: 11456,
-  };
-
-  const multiResBN = {
-    basePath: "./360photoBN",
-    path: "/%l/%s%y_%x",
-    fallbackPath: "/fallback/%s",
-    extension: "jpg",
-    tileResolution: 512,
-    maxLevel: 6,
-    cubeResolution: 11456,
-  };
 
   const config = {
     autoLoad: true,
@@ -103,10 +68,10 @@ const Panorama = () => {
       ref={ref}
       className="panorama"
       /* imageSource="./images/360photo.jpg" */
-      id="1"
-      sceneId="Sevilla"
+      id={sceneSelected.title}
+      sceneId={sceneSelected.title}
       config={config}
-      multiRes={multiResColor}
+      multiRes={sceneSelected}
       type="multires"
     ></ReactPannellum>
   ) : null;
