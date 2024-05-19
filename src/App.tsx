@@ -64,7 +64,7 @@ const Main = () => {
   return (
     <Container fluid className="p-0">
       <MenuTop multiRes={multiRes} handleMultiRes={handleMultiRes} />
-      <Panorama id={sceneSelected.id} key={`panorama_key_${sceneSelected.id}`} multiResScene={sceneSelected} />
+      <Panorama id={`panorama_id_${sceneSelected.id}`} key={`panorama_key_${sceneSelected.id}`} multiResScene={sceneSelected} />
     </Container>
   );
 };

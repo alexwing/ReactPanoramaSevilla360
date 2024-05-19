@@ -5,7 +5,7 @@ import ThemeContext from "../../components/ThemeProvider";
 import { Nav } from "react-bootstrap";
 import PuzzleOptions from "./PuzzleOptions";
 import { PanoramaMultiRes, WikiInfoLang } from "../../models/Interfaces";
-import { getCurrentLang, getLang, getListLanguages, setVisibleHostspots } from "../../lib/Utils";
+import { getCurrentLang, getLang, getListLanguages, setVisibleHostspotsByClass } from "../../lib/Utils";
 import LangSelector from "../LangSelector";
 import { setCookie } from "react-simple-cookie-store";
 import { ConfigService } from "../../services/configService";
@@ -34,7 +34,7 @@ const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
   }, [i18n]);
   
   useEffect(() => {
-    setVisibleHostspots(poisVisible);
+    setVisibleHostspotsByClass(poisVisible);
   }, [poisVisible]);
 
   const getLanguages = () => {

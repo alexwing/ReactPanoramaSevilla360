@@ -44,8 +44,8 @@ const Panorama = ({ id, multiResScene }: PanoramaProps) => {
     <ReactPannellum
       className="panorama"
       /* imageSource="./images/360photo.jpg" */
-      id={id}
-      sceneId={multiResScene.key}
+      id={`reacpanorama_key__${multiResScene.id}`}
+      sceneId={`reacpanorama_sceneId__${multiResScene.id}`}
       config={config}
       multiRes={multiResScene}
       type="multires"

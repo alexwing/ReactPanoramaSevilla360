@@ -302,3 +302,19 @@ export function setVisibleHostspots(visible: boolean) {
     (hotspot as HTMLElement).style.display = visible ? "block" : "none";
   });
 }
+
+//add to class "wiki-info" display none
+export function setVisibleHostspotsByClass(visible: boolean) {
+  let style = document.createElement('style');
+  style.type = 'text/css';
+  if(visible) {
+    style.innerHTML = '.wiki-info { display: block; }';
+  } else {
+    style.innerHTML = '.wiki-info { display: none; }';
+  }
+  document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+
+
+
