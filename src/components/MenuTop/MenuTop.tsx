@@ -31,7 +31,7 @@ const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
     i18n.changeLanguage(langAux);
     setShowInfo(false);
     getLanguages();
-  }, []);
+  }, [i18n]);
   
   useEffect(() => {
     setVisibleHostspots(poisVisible);
@@ -79,7 +79,7 @@ const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
         <Navbar.Collapse id="basic-navbar-nav">
           <PanoramaSelector 
             scenes={multiRes}
-            currentScene={multiRes[0].title}
+            currentScene={multiRes[0].id}
             onSelectScene={handleMultiRes}
           />
           <Nav className="ms-auto">

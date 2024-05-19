@@ -68,7 +68,9 @@ export interface Hotspot {
 }
 
 export interface PanoramaMultiRes {
+  id: string;
   title: string;
+  key: string;
   basePath: string;
   path: string;
   fallbackPath: string;

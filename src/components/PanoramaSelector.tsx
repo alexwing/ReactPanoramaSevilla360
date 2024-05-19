@@ -11,12 +11,19 @@ interface PanoramaSelectorProps {
 }
 
 function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: PanoramaSelectorProps): JSX.Element {
+  const [selected, setSelected] = React.useState(currentScene);
+
   const navDropdownTitle = (
     <span>
       <Image size={24} className="me-2" />
-      <span className="d-xl-inline d-lg-none ">{currentScene}</span>
+      <span className="d-xl-inline d-lg-none ">{scenes.find((c: PanoramaMultiRes) => c.id === selected)?.title}</span>
     </span>
   );
+
+  const onSelectSceneHandler = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setSelected(event.currentTarget.id);
+    onSelectScene(event);
+  }
 
   return (
     <React.Fragment>
@@ -27,7 +34,7 @@ function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: Panorama
           id="nav-dropdown"
         >
           {scenes.map((c: PanoramaMultiRes) => (
-            <NavDropdown.Item id={c.title} key={c.title} onClick={onSelectScene}>
+            <NavDropdown.Item id={c.id} key={c.id} onClick={onSelectSceneHandler}>
               {c.title}
             </NavDropdown.Item>
           ))}

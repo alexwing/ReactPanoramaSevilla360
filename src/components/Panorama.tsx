@@ -1,47 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import ReactPannellum, {
-  getViewer,
-  mouseEventToCoords,
-} from "react-pannellum";
+import React, { useState, useEffect } from "react";
+import ReactPannellum from "react-pannellum";
 import { PanoramaMultiRes } from "../models/Interfaces";
+import axios from "axios";
 
-const Panorama = ({sceneSelected} : {sceneSelected: PanoramaMultiRes}) => {
+const Panorama = ({ multiResScene }: { multiResScene: PanoramaMultiRes }) => {
   const [hotspots, setHotspots] = useState(null);
-  const ref = useRef();
-
-  let isLoaded = false;
-  let spotTarget = {
-    pitch: 0,
-    yaw: 0,
-  };
-  useEffect(() => {
-    if (!ref.current || isLoaded) return;
-    setTimeout(() => {
-      const viewer = getViewer();
-
-      viewer.on("mousedown", (ev) => {
-        const coords = mouseEventToCoords(ev);
-        console.error(coords);
-        spotTarget.pitch = coords[0];
-        spotTarget.yaw = coords[1];
-      });
-    }, 1000);
-    isLoaded = true;
-  }, [ref]);
 
   useEffect(() => {
-    fetch("./hotspots.json")
+    axios
+      .get("./hotspots.json")
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
+        setHotspots(response.data);
       })
-      .then((data) => {
-        setHotspots(data);
-      })
-      .catch(function () {
-        console.log("Error al leer el archivo JSON.");
+      .catch((error) => {
+        console.log("Error al leer el archivo JSON.", error);
       });
   }, []);
 
@@ -65,13 +37,12 @@ const Panorama = ({sceneSelected} : {sceneSelected: PanoramaMultiRes}) => {
 
   return hotspots !== null ? (
     <ReactPannellum
-      ref={ref}
       className="panorama"
       /* imageSource="./images/360photo.jpg" */
-      id={sceneSelected.title}
-      sceneId={sceneSelected.title}
+      id={multiResScene.id}
+      sceneId={multiResScene.key}
       config={config}
-      multiRes={sceneSelected}
+      multiRes={multiResScene}
       type="multires"
     ></ReactPannellum>
   ) : null;

@@ -171,3 +171,11 @@ code {
   width: 100% !important;
   height: calc(100vh - 58px) !important;
 }
+
+.visible {
+  display: block;
+}
+
+.invisible {
+  display: block;
+}

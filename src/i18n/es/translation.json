@@ -30,5 +30,10 @@
     },
     "donate": "Donar",
     "privacy": "política de privacidad"
+  },
+  "scene": {
+    "original": "Original",
+    "bn": "Blanco y Negro",
+    "color": "Color"
   }
 }
