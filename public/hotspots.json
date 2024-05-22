@@ -34,7 +34,7 @@
   {
     "type": "info",
     "pitch": -7.7,
-    "yaw": -44,
+    "yaw": -45,
     "text": "Torre de Don Fadrique",
     "URL": "https://es.wikipedia.org/wiki/Torre_de_Don_Fadrique_(Sevilla)",
     "cssClass": "pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-pointer pnlm-tooltip wiki-info"
