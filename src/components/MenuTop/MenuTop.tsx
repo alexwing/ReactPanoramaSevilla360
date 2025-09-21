@@ -15,9 +15,10 @@ import PanoramaSelector from "../PanoramaSelector";
 interface MenuTopProps {
   multiRes: PanoramaMultiRes[];
   handleMultiRes: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  handleResetView?: () => void;
 }
 
-const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
+  const MenuTop = ({ multiRes, handleMultiRes, handleResetView }: MenuTopProps): JSX.Element => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
@@ -91,6 +92,7 @@ const MenuTop = ({ multiRes, handleMultiRes }: MenuTopProps): JSX.Element => {
             <PuzzleOptions
               handleInfo={handleInfo}
               handlePois={handlePois}
+              handleResetView={handleResetView}
             />
           </Nav>
         </Navbar.Collapse>

@@ -13,11 +13,13 @@ import { ConfigService } from "../../services/configService";
 interface PuzzleOptionsProps {
   handleInfo: () => void;
   handlePois: () => void;
+  handleResetView?: () => void;
 }
 
 function PuzzleOptions({
   handleInfo,
   handlePois,
+  handleResetView,
 }: PuzzleOptionsProps): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
   const [ poisVisible, setPoisVisible ] = React.useState(true);
@@ -72,6 +74,18 @@ function PuzzleOptions({
       labelClass: "d-lg-none",
       visible: true,
     },
+    { id: "resetview",
+      variant: "none",
+      onClickHandler: handleResetView ? (() => { if (handleResetView) handleResetView(); }) : () => {},
+      tooltip: t("topMenu.resetView"),
+      icon: Icon.ArrowCounterclockwise,
+      iconSize: size,
+      iconColor: "",
+      iconClass: "me-2",
+      label: t("topMenu.resetView"),
+      labelClass: "d-lg-none",
+      visible: true,
+    },    
     { id: "theme",
       variant: "none",
       onClickHandler: onThemeChange,

@@ -7,7 +7,8 @@
     "about": "About",
     "refocus": "Refocus",
     "fullscreen": "Fullscreen",
-    "pois": "Points of interest"
+    "pois": "Points of interest",
+    "resetView": "Reset View"
   },
   "ConfirmDialog": {
     "yes": "Yes",

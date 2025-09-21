@@ -23,6 +23,8 @@ export type PanoramaHandle = {
 const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, onCameraApplied }: PanoramaProps, ref: React.Ref<PanoramaHandle>) => {
   const [hotspots, setHotspots] = useState<any[] | null>(null);
   const internalViewerRef = useRef<any | null>(null);
+  // Almacenar la cámara inicial del viewer localmente para reset
+  const initialCameraRef = useRef<{ yaw?: number; pitch?: number; hfov?: number } | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -151,6 +153,18 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
         if (viewer) {
           internalViewerRef.current = viewer;
           if (mounted && onViewerReady) onViewerReady(viewer);
+          // Capturar la cámara inicial la primera vez que encontremos el viewer
+          try {
+            if (!initialCameraRef.current) {
+              const yaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : undefined;
+              const pitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : undefined;
+              const hfov = (typeof viewer.getHfov === 'function' ? viewer.getHfov() :
+                (typeof viewer.getHFOV === 'function' ? viewer.getHFOV() : undefined));
+              initialCameraRef.current = { yaw, pitch, hfov };
+            }
+          } catch (e) {
+            // ignore
+          }
           if (intervalId !== undefined) window.clearInterval(intervalId);
         }
       } catch (e) {
@@ -248,6 +262,35 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
       }
       return null;
     }
+      ,
+      // además exponer resetToInitial para restaurar directamente
+      // Puede pasar una cámara a restaurar; si no, usa la cámara inicial capturada internamente
+      resetToInitial: (camera?: { yaw?: number; pitch?: number; hfov?: number } | null) => {
+        try {
+          const v = internalViewerRef.current;
+          const init = camera ?? initialCameraRef.current;
+          if (v && init) {
+            const { yaw, pitch, hfov } = init;
+            if (typeof v.stopMovement === 'function') try { v.stopMovement(); } catch {}
+            if (typeof v.lookAt === 'function') {
+              try { v.lookAt(yaw, pitch, hfov, false); } catch {}
+            } else {
+              try { if (typeof yaw === 'number' && typeof v.setYaw === 'function') v.setYaw(yaw, false); } catch {}
+              try { if (typeof pitch === 'number' && typeof v.setPitch === 'function') v.setPitch(pitch, false); } catch {}
+              try {
+                if (typeof hfov === 'number') {
+                  if (typeof v.setHfov === 'function') v.setHfov(hfov, false);
+                  else if (typeof v.setHFOV === 'function') v.setHFOV(hfov, false);
+                }
+              } catch {}
+            }
+            return true;
+          }
+        } catch (e) {
+          // ignore
+        }
+        return false;
+      }
   }), [multiResScene.id]);
 
   return hotspots !== null ? (

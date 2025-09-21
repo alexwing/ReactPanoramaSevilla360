@@ -60,6 +60,8 @@ const Main = () => {
   const panoramaRef = React.useRef<any | null>(null);
   // Cámara global a restaurar en el próximo panorama
   const [pendingCamera, setPendingCamera] = useState<CameraState | null>(null);
+  // Cámara inicial (capturada cuando el viewer está listo por primera vez)
+  const [initialCamera, setInitialCamera] = useState<CameraState | null>(null);
 
   const handleMultiRes = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -79,9 +81,54 @@ const Main = () => {
     }
   };
 
+  const handleResetView = () => {
+    try {
+      // Intentar usar método imperativo del panorama para resetear a la cámara inicial
+      const api = panoramaRef.current as any;
+      if (api && typeof api.resetToInitial === 'function') {
+        // pasar la cámara inicial capturada (si existe) para forzar usar siempre la misma
+        const ok = api.resetToInitial(initialCamera ?? null);
+        if (ok) return;
+      }
+      // Fallback: Preferir la cámara inicial capturada en App. Si no existe, intentar leer la cámara actual del viewer.
+      if (initialCamera) {
+        setPendingCamera(initialCamera);
+      } else {
+        if (api && typeof api.getCamera === 'function') {
+          const cam = api.getCamera();
+          if (cam) setPendingCamera(cam);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleViewerReady = (viewer: any | null) => {
+    try {
+      // Capturar la cámara inicial la primera vez que el viewer esté listo
+      if (!initialCamera) {
+        const api = panoramaRef.current;
+        if (api && typeof api.getCamera === 'function') {
+          const cam = api.getCamera();
+          if (cam) setInitialCamera(cam);
+        } else if (viewer) {
+          // intentar usar el viewer pasado como argumento
+          const yaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : undefined;
+          const pitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : undefined;
+          const hfov = (typeof viewer.getHfov === 'function' ? viewer.getHfov() :
+            (typeof viewer.getHFOV === 'function' ? viewer.getHFOV() : undefined));
+          setInitialCamera({ yaw, pitch, hfov });
+        }
+      }
+    } catch {
+      // ignore
+    }
+  };
+
   return (
     <Container fluid className="p-0">
-      <MenuTop multiRes={multiRes} handleMultiRes={handleMultiRes} />
+  <MenuTop multiRes={multiRes} handleMultiRes={handleMultiRes} handleResetView={handleResetView} />
       <Panorama
         id={`panorama_id_${sceneSelected.id}`}
         key={`panorama_key_${sceneSelected.id}`}
@@ -90,6 +137,8 @@ const Main = () => {
         cameraState={pendingCamera}
         // Obtener la API imperativa del Panorama
   ref={panoramaRef}
+        // Capturar viewer cuando esté listo (para almacenar cámara inicial)
+        onViewerReady={handleViewerReady}
         onCameraApplied={() => setPendingCamera(null)}
       />
     </Container>
