@@ -56,10 +56,9 @@ const Main = () => {
   interface CameraState { yaw?: number; pitch?: number; hfov?: number }
 
   const [sceneSelected, setSceneSelected] = useState(multiRes[0]);
-  const [cameraByScene, setCameraByScene] = useState<Record<string, CameraState>>({});
-  // Ref para mantener la API imperativa expuesta por Panorama
+  // Ref a la API imperativa del Panorama (getCamera)
   const panoramaRef = React.useRef<any | null>(null);
-  // Cámara a aplicar en el siguiente panorama seleccionado (última vista)
+  // Cámara global a restaurar en el próximo panorama
   const [pendingCamera, setPendingCamera] = useState<CameraState | null>(null);
 
   const handleMultiRes = (
@@ -67,40 +66,14 @@ const Main = () => {
   ) => {
     const scene = multiRes.find((s) => s.id === event.currentTarget.id);
     if (scene) {
-      try { console.log('[App] switching scene', sceneSelected.id, '->', scene.id); } catch {}
       // Antes de cambiar, pedimos al componente Panorama su cámara actual (getCamera)
       try {
         const api = panoramaRef.current;
         if (api && typeof api.getCamera === 'function') {
           const cam = api.getCamera();
-          if (cam) {
-            try { console.log('[App] captured camera before switch', cam, 'from scene', sceneSelected.id, 'to', scene.id); } catch {}
-            // Guardamos por escena anterior (opcional) y como pendingCamera para aplicar en la nueva
-            setCameraByScene(prev => ({ ...prev, [sceneSelected.id]: cam }));
-            setPendingCamera(cam);
-          }
-          else {
-            try { console.log('[App] getCamera() returned null, trying global pannellum fallback'); } catch {}
-            try {
-              const pannellum = (window as any).pannellum;
-              if (pannellum && typeof pannellum.viewer === 'function') {
-                const viewer = pannellum.viewer(`reacpanorama_key__${sceneSelected.id}`);
-                if (viewer) {
-                  const yaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : undefined;
-                  const pitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : undefined;
-                  const hfov = (typeof viewer.getHfov === 'function' ? viewer.getHfov() : (typeof viewer.getHFOV === 'function' ? viewer.getHFOV() : undefined));
-                  const cam2 = { yaw, pitch, hfov };
-                  try { console.log('[App] captured via fallback', cam2); } catch {}
-                  setCameraByScene(prev => ({ ...prev, [sceneSelected.id]: cam2 }));
-                  setPendingCamera(cam2);
-                }
-              }
-            } catch {}
-          }
+          if (cam) setPendingCamera(cam);
         }
-      } catch (e) {
-        // ignorar
-      }
+      } catch {}
 
       setSceneSelected(scene);
     }
@@ -113,9 +86,9 @@ const Main = () => {
         id={`panorama_id_${sceneSelected.id}`}
         key={`panorama_key_${sceneSelected.id}`}
         multiResScene={sceneSelected}
-        // pasar cámara a aplicar: la más reciente (pending) o la propia guardada por escena
-        cameraState={pendingCamera ?? cameraByScene[sceneSelected.id]}
-  // obtenemos la api imperativa del Panorama
+        // Pasar la cámara global pendiente a aplicar
+        cameraState={pendingCamera}
+        // Obtener la API imperativa del Panorama
   ref={panoramaRef}
         onCameraApplied={() => setPendingCamera(null)}
       />

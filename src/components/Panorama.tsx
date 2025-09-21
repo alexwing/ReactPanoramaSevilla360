@@ -26,7 +26,6 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    try { console.log('[Panorama] mount scene', multiResScene.id); } catch {}
     axios
       .get("./hotspots.json")
       .then((response) => {
@@ -151,7 +150,6 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
 
         if (viewer) {
           internalViewerRef.current = viewer;
-          try { console.log('[Panorama] viewer ready for scene', multiResScene.id); } catch {}
           if (mounted && onViewerReady) onViewerReady(viewer);
           if (intervalId !== undefined) window.clearInterval(intervalId);
         }
@@ -182,80 +180,42 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
     const v = internalViewerRef.current;
     if (!v || !cameraState) return;
 
-    const tolYaw = 0.2; // grados
-    const tolPitch = 0.2; // grados
-    const tolHfov = 0.5; // FOV
-    const targetYaw = typeof cameraState.yaw === 'number' ? cameraState.yaw : v.getYaw?.();
-    const targetPitch = typeof cameraState.pitch === 'number' ? cameraState.pitch : v.getPitch?.();
-    const targetHfov = typeof cameraState.hfov === 'number' ? cameraState.hfov : v.getHfov?.();
-
-    const nearly = (a?: number, b?: number, tol = 0.1) => {
-      if (typeof a !== 'number' || typeof b !== 'number') return false;
-      return Math.abs(a - b) <= tol;
-    };
-
-    const applyNow = (label?: string) => {
+    const apply = () => {
       try {
+        // Cortar animaciones en curso si la API lo soporta
+        try { if (typeof v.stopMovement === 'function') v.stopMovement(); } catch {}
+        const { yaw, pitch, hfov } = cameraState;
         if (typeof v.lookAt === 'function') {
-          v.lookAt(targetYaw, targetPitch, targetHfov, false);
+          v.lookAt(yaw, pitch, hfov, false);
         } else {
-          if (typeof targetYaw === 'number' && typeof v.setYaw === 'function') v.setYaw(targetYaw, false);
-          if (typeof targetPitch === 'number' && typeof v.setPitch === 'function') v.setPitch(targetPitch, false);
-          if (typeof targetHfov === 'number') {
-            if (typeof v.setHfov === 'function') v.setHfov(targetHfov, false);
-            else if (typeof v.setHFOV === 'function') v.setHFOV(targetHfov, false);
+          if (typeof yaw === 'number' && typeof v.setYaw === 'function') v.setYaw(yaw, false);
+          if (typeof pitch === 'number' && typeof v.setPitch === 'function') v.setPitch(pitch, false);
+          if (typeof hfov === 'number') {
+            if (typeof v.setHfov === 'function') v.setHfov(hfov, false);
+            else if (typeof v.setHFOV === 'function') v.setHFOV(hfov, false);
           }
         }
-        try { console.log('[Panorama] applied camera', { targetYaw, targetPitch, targetHfov, label }); } catch {}
+        if (onCameraApplied) onCameraApplied();
       } catch {}
     };
 
-    let cancelled = false;
-    let appliedOk = false;
-    const applyAndCheck = (label?: string) => {
-      if (cancelled) return;
-      applyNow(label);
-      try {
-        const cy = typeof v.getYaw === 'function' ? v.getYaw() : undefined;
-        const cp = typeof v.getPitch === 'function' ? v.getPitch() : undefined;
-        const ch = typeof v.getHfov === 'function' ? v.getHfov() : (typeof v.getHFOV === 'function' ? v.getHFOV() : undefined);
-        appliedOk = nearly(cy, targetYaw, tolYaw) && nearly(cp, targetPitch, tolPitch) && nearly(ch, targetHfov, tolHfov);
-        if (appliedOk && onCameraApplied) onCameraApplied();
-        try { console.log('[Panorama] check', { cy, cp, ch, ok: appliedOk }); } catch {}
-      } catch {}
-    };
-
-    // Intentos programados por ~1.2s
-    applyAndCheck('immediate');
-    const raf1 = window.requestAnimationFrame(() => applyAndCheck('raf1'));
-    const t1 = window.setTimeout(() => applyAndCheck('t+80ms'), 80);
-    const t2 = window.setTimeout(() => applyAndCheck('t+180ms'), 180);
-    const t3 = window.setTimeout(() => applyAndCheck('t+320ms'), 320);
-    const t4 = window.setTimeout(() => applyAndCheck('t+500ms'), 500);
-    const t5 = window.setTimeout(() => applyAndCheck('t+800ms'), 800);
-    const t6 = window.setTimeout(() => applyAndCheck('t+1200ms'), 1200);
-
-    // Enganchar eventos del viewer si existen
-    const handlers: Array<[string, any]> = [];
-    const addHandler = (ev: string) => {
+    // Intento inmediato + rAF y un pequeño delay tras la carga
+    apply();
+    const raf = window.requestAnimationFrame(apply);
+    let t1: number | undefined;
+    // Reaplicar tras 'load' si está disponible
+    let loadHandler: any = null;
+    try {
       if (typeof v.on === 'function') {
-        const h = () => applyAndCheck(ev);
-        try { v.on(ev as any, h); handlers.push([ev, h]); } catch {}
+        loadHandler = () => { t1 = window.setTimeout(apply, 150); };
+        v.on('load', loadHandler);
       }
-    };
-    addHandler('load');
-    addHandler('scenechangefadedone');
-    addHandler('animatefinished');
+    } catch {}
 
     return () => {
-      cancelled = true;
-      window.cancelAnimationFrame(raf1);
-      [t1, t2, t3, t4, t5, t6].forEach((t) => window.clearTimeout(t));
-      try {
-        if (typeof v.off === 'function') {
-          handlers.forEach(([ev, h]) => { try { v.off(ev as any, h); } catch {} });
-        }
-      } catch {}
+      window.cancelAnimationFrame(raf);
+      if (t1 !== undefined) window.clearTimeout(t1);
+      try { if (loadHandler && typeof v.off === 'function') v.off('load', loadHandler); } catch {}
     };
   }, [cameraState, onCameraApplied]);
 
