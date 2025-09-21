@@ -26,14 +26,15 @@ const Panorama = ({ id, multiResScene }: PanoramaProps) => {
       });
   }, []);
 
-  // FIX panellum bug: Oculta el primer contenedor .pnlm-render-container incluso si se crea después del montaje.
+  // FIX panellum bug: Oculta el primer contenedor .pnlm-render-container solo si hay al menos dos
   // Usamos MutationObserver para detectar nodos añadidos por la librería.
   useEffect(() => {
     const modified = new WeakMap<HTMLElement, string>();
 
-    const hideFirst = () => {
+    const hideFirstIfNeeded = () => {
       const elems = document.querySelectorAll('.pnlm-render-container');
-      if (elems && elems.length > 0) {
+      // Solo actuar si hay 2 o más contenedores (comportamiento duplicado de la librería)
+      if (elems && elems.length >= 2) {
         const first = elems[0] as HTMLElement | undefined;
         if (first && !modified.has(first)) {
           // Guardar display previo y ocultar
@@ -43,9 +44,9 @@ const Panorama = ({ id, multiResScene }: PanoramaProps) => {
       }
     };
 
-    // Intento inmediato por si ya está en el DOM
+    // Intento inmediato por si ya están en el DOM
     try {
-      hideFirst();
+      hideFirstIfNeeded();
     } catch (err) {
       // ignorar
     }
@@ -54,8 +55,7 @@ const Panorama = ({ id, multiResScene }: PanoramaProps) => {
       for (const m of mutations) {
         if (m.addedNodes && m.addedNodes.length > 0) {
           // Intentar ocultar si se añadieron nodos
-          hideFirst();
-          // Si ya ocultamos, podemos seguir observando para restauración al desmontar.
+          hideFirstIfNeeded();
         }
       }
     });
@@ -64,20 +64,14 @@ const Panorama = ({ id, multiResScene }: PanoramaProps) => {
 
     return () => {
       observer.disconnect();
-      // Restaurar estilos modificados
+      // Restaurar estilos modificados: seleccionamos los contenedores actuales
       try {
-        modified && modified instanceof WeakMap && (function restore() {
-          // WeakMap no es iterable, así que intentamos restaurar por selección directa
-          const elems = document.querySelectorAll('.pnlm-render-container');
-          elems.forEach((el) => {
-            const elh = el as HTMLElement;
-            // Solo restaurar si el estilo coincide con lo que pusimos ("none")
-            if (elh.style.display === 'none') {
-              const prev = modified.get(elh);
-              if (typeof prev === 'string') elh.style.display = prev;
-            }
-          });
-        })();
+        const elems = document.querySelectorAll('.pnlm-render-container');
+        elems.forEach((el) => {
+          const elh = el as HTMLElement;
+          const prev = modified.get(elh);
+          if (typeof prev === 'string') elh.style.display = prev;
+        });
       } catch (e) {
         // ignore
       }
