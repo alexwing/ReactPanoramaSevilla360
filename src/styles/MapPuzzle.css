@@ -179,3 +179,17 @@ code {
 .invisible {
   display: block;
 }
+
+/* Estilos para hotspots de Wikipedia */
+.pnlm-hotspot.wiki-info {
+  cursor: pointer !important;
+}
+
+.pnlm-hotspot.wiki-info:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.pnlm-hotspot.wiki-info:active {
+  transform: scale(0.95);
+}

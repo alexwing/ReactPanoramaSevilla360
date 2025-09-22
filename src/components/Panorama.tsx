@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, memo, useRef, useImperativeHandle 
 import ReactPannellum from "react-pannellum";
 import { PanoramaMultiRes } from "../models/Interfaces";
 import axios from "axios";
+import WikiHotspot from "./WikiHotspot";
 
 interface PanoramaProps {
   id: string;
@@ -26,6 +27,19 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
   // Almacenar la cámara inicial del viewer localmente para reset
   const initialCameraRef = useRef<{ yaw?: number; pitch?: number; hfov?: number } | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  
+  // Estado para WikiHotspot
+  const [showWikiHotspot, setShowWikiHotspot] = useState(false);
+  const [selectedHotspot, setSelectedHotspot] = useState<{text: string; URL: string} | null>(null);
+
+  // Manejador para clicks en hotspots de Wikipedia
+  const handleHotspotClick = (hotspot: any) => {
+    setSelectedHotspot({
+      text: hotspot.text,
+      URL: hotspot.URL
+    });
+    setShowWikiHotspot(true);
+  };
 
   useEffect(() => {
     axios
@@ -165,6 +179,18 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
           } catch (e) {
             // ignore
           }
+          
+          // Intentar configurar listeners de hotspots usando la API de pannellum
+          try {
+            if (typeof viewer.on === 'function') {
+              viewer.on('click', (evt: any) => {
+                // Este evento podría contener información sobre hotspots en futuras versiones
+              });
+            }
+          } catch (e) {
+            // Could not set pannellum event listeners
+          }
+          
           if (intervalId !== undefined) window.clearInterval(intervalId);
         }
       } catch (e) {
@@ -188,6 +214,52 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
       }
     };
   }, [multiResScene.id, onViewerReady]);
+
+  // Configurar listeners para clicks en hotspots con clase wiki-info
+  useEffect(() => {
+    let isMouseDown = false;
+    let mouseDownTime = 0;
+
+    const handleMouseDown = () => {
+      isMouseDown = true;
+      mouseDownTime = Date.now();
+    };
+
+    const handleMouseUp = (event: MouseEvent) => {
+      const clickDuration = Date.now() - mouseDownTime;
+      isMouseDown = false;
+
+      // Solo procesar si fue un click rápido (no un arrastre)
+      if (clickDuration < 200) {
+        const target = event.target as HTMLElement;
+        const hotspotElement = target.closest('.pnlm-hotspot') as HTMLElement;
+        
+        if (hotspotElement && hotspotElement.classList.contains('wiki-info')) {
+          // Buscar el hotspot correspondiente
+          const hotspot = hotspots?.find(h => {
+            return hotspotElement.textContent?.trim() === h.text;
+          });
+          
+          if (hotspot) {
+            event.preventDefault();
+            event.stopPropagation();
+            handleHotspotClick(hotspot);
+          }
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('mousedown', handleMouseDown);
+      document.addEventListener('mouseup', handleMouseUp);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [hotspots]);
 
   // Aplicar de forma explícita la cámara cuando el viewer esté listo o cambie cameraState
   useEffect(() => {
@@ -304,6 +376,11 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
         multiRes={multiResScene}
         type="multires"
       ></ReactPannellum>
+      <WikiHotspot
+        show={showWikiHotspot}
+        onHide={setShowWikiHotspot}
+        hotspotData={selectedHotspot}
+      />
     </div>
   ) : null;
 };
