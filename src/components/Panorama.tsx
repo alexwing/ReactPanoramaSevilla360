@@ -34,21 +34,55 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
 
   // Manejador para clicks en hotspots de Wikipedia
   const handleHotspotClick = (hotspot: any) => {
-    setSelectedHotspot({
-      text: hotspot.text,
-      URL: hotspot.URL
-    });
-    setShowWikiHotspot(true);
+    // Usar originalURL si existe (para hotspots de Wikipedia), sino usar URL
+    const url = hotspot.originalURL || hotspot.URL;
+    
+    // Verificar si la URL es de Wikipedia
+    const isWikipediaUrl = url && (
+      url.includes('wikipedia.org') || 
+      url.includes('es.wikipedia.org') ||
+      url.includes('en.wikipedia.org')
+    );
+
+    if (isWikipediaUrl) {
+      // Si es Wikipedia, mostrar modal
+      setSelectedHotspot({
+        text: hotspot.text,
+        URL: url
+      });
+      setShowWikiHotspot(true);
+    } else if (url) {
+      // Si no es Wikipedia pero tiene URL, abrir en nueva ventana
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   useEffect(() => {
     axios
       .get("./hotspots.json")
       .then((response) => {
-        const hotspotsWithUniqueIds = response.data.map((hotspot: any) => ({
-          ...hotspot,
-          id: `${multiResScene.id}_${hotspot.id}`,
-        }));
+        const hotspotsWithUniqueIds = response.data.map((hotspot: any) => {
+          const newHotspot = {
+            ...hotspot,
+            id: `${multiResScene.id}_${hotspot.id}`,
+          };
+
+          // Si es una URL de Wikipedia, eliminar la URL para evitar navegación automática
+          const isWikipediaUrl = hotspot.URL && (
+            hotspot.URL.includes('wikipedia.org') || 
+            hotspot.URL.includes('es.wikipedia.org') ||
+            hotspot.URL.includes('en.wikipedia.org')
+          );
+
+          if (isWikipediaUrl) {
+            // Guardar la URL original en un campo personalizado
+            newHotspot.originalURL = hotspot.URL;
+            // Eliminar la URL para prevenir navegación automática
+            delete newHotspot.URL;
+          }
+
+          return newHotspot;
+        });
         setHotspots(hotspotsWithUniqueIds);
       })
       .catch((error) => {
@@ -234,15 +268,30 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
         const target = event.target as HTMLElement;
         const hotspotElement = target.closest('.pnlm-hotspot') as HTMLElement;
         
-        if (hotspotElement && hotspotElement.classList.contains('wiki-info')) {
+        // Detectar cualquier hotspot de tipo info (no solo wiki-info)
+        if (hotspotElement && (
+          hotspotElement.classList.contains('wiki-info') || 
+          hotspotElement.classList.contains('pnlm-info')
+        )) {
           // Buscar el hotspot correspondiente
           const hotspot = hotspots?.find(h => {
             return hotspotElement.textContent?.trim() === h.text;
           });
           
           if (hotspot) {
-            event.preventDefault();
-            event.stopPropagation();
+            // Verificar si es Wikipedia antes de prevenir el comportamiento por defecto
+            const isWikipediaUrl = hotspot.URL && (
+              hotspot.URL.includes('wikipedia.org') || 
+              hotspot.URL.includes('es.wikipedia.org') ||
+              hotspot.URL.includes('en.wikipedia.org')
+            );
+
+            if (isWikipediaUrl) {
+              // Si es Wikipedia, prevenir navegación y mostrar modal
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            
             handleHotspotClick(hotspot);
           }
         }

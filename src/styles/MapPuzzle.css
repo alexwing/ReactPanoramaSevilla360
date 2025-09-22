@@ -180,16 +180,19 @@ code {
   display: block;
 }
 
-/* Estilos para hotspots de Wikipedia */
-.pnlm-hotspot.wiki-info {
+/* Estilos para hotspots de información (Wikipedia y otros) */
+.pnlm-hotspot.wiki-info,
+.pnlm-hotspot.pnlm-info {
   cursor: pointer !important;
 }
 
-.pnlm-hotspot.wiki-info:hover {
+.pnlm-hotspot.wiki-info:hover,
+.pnlm-hotspot.pnlm-info:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
-.pnlm-hotspot.wiki-info:active {
+.pnlm-hotspot.wiki-info:active,
+.pnlm-hotspot.pnlm-info:active {
   transform: scale(0.95);
 }
