@@ -16,9 +16,10 @@ interface MenuTopProps {
   multiRes: PanoramaMultiRes[];
   handleMultiRes: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   handleResetView?: () => void;
+  currentSceneId: string;
 }
 
-  const MenuTop = ({ multiRes, handleMultiRes, handleResetView }: MenuTopProps): JSX.Element => {
+const MenuTop = ({ multiRes, handleMultiRes, handleResetView, currentSceneId }: MenuTopProps): JSX.Element => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);
@@ -80,7 +81,7 @@ interface MenuTopProps {
         <Navbar.Collapse id="basic-navbar-nav">
           <PanoramaSelector 
             scenes={multiRes}
-            currentScene={multiRes[0].id}
+            currentScene={currentSceneId}
             onSelectScene={handleMultiRes}
           />
           <Nav className="ms-auto">

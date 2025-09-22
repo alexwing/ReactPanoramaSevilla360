@@ -13,6 +13,10 @@ interface PanoramaSelectorProps {
 function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: PanoramaSelectorProps): JSX.Element {
   const [selected, setSelected] = React.useState(currentScene);
 
+  React.useEffect(() => {
+    setSelected(currentScene);
+  }, [currentScene]);
+
   const navDropdownTitle = (
     <span>
       <Image size={24} className="me-2" />
@@ -34,7 +38,7 @@ function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: Panorama
           id="nav-dropdown"
         >
           {scenes.map((c: PanoramaMultiRes) => (
-            <NavDropdown.Item id={c.id} key={c.id} onClick={onSelectSceneHandler}>
+            <NavDropdown.Item id={c.id} key={c.id} active={selected === c.id} onClick={onSelectSceneHandler}>
               {c.title}
             </NavDropdown.Item>
           ))}

@@ -128,7 +128,7 @@ const Main = () => {
 
   return (
     <Container fluid className="p-0">
-  <MenuTop multiRes={multiRes} handleMultiRes={handleMultiRes} handleResetView={handleResetView} />
+      <MenuTop multiRes={multiRes} handleMultiRes={handleMultiRes} handleResetView={handleResetView} currentSceneId={sceneSelected.id} />
       <Panorama
         id={`panorama_id_${sceneSelected.id}`}
         key={`panorama_key_${sceneSelected.id}`}
@@ -136,7 +136,7 @@ const Main = () => {
         // Pasar la cámara global pendiente a aplicar
         cameraState={pendingCamera}
         // Obtener la API imperativa del Panorama
-  ref={panoramaRef}
+        ref={panoramaRef}
         // Capturar viewer cuando esté listo (para almacenar cámara inicial)
         onViewerReady={handleViewerReady}
         onCameraApplied={() => setPendingCamera(null)}
