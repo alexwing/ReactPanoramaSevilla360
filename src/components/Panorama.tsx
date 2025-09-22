@@ -67,17 +67,10 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
             id: `${multiResScene.id}_${hotspot.id}`,
           };
 
-          // Si es una URL de Wikipedia, eliminar la URL para evitar navegación automática
-          const isWikipediaUrl = hotspot.URL && (
-            hotspot.URL.includes('wikipedia.org') || 
-            hotspot.URL.includes('es.wikipedia.org') ||
-            hotspot.URL.includes('en.wikipedia.org')
-          );
-
-          if (isWikipediaUrl) {
-            // Guardar la URL original en un campo personalizado
+          // Para TODOS los hotspots con URL, guardar la URL original y eliminar la URL
+          // para prevenir que pannellum abra ventanas automáticamente
+          if (hotspot.URL) {
             newHotspot.originalURL = hotspot.URL;
-            // Eliminar la URL para prevenir navegación automática
             delete newHotspot.URL;
           }
 
@@ -279,18 +272,10 @@ const PanoramaInner = ({ id, multiResScene, cameraState = null, onViewerReady, o
           });
           
           if (hotspot) {
-            // Verificar si es Wikipedia antes de prevenir el comportamiento por defecto
-            const isWikipediaUrl = hotspot.URL && (
-              hotspot.URL.includes('wikipedia.org') || 
-              hotspot.URL.includes('es.wikipedia.org') ||
-              hotspot.URL.includes('en.wikipedia.org')
-            );
-
-            if (isWikipediaUrl) {
-              // Si es Wikipedia, prevenir navegación y mostrar modal
-              event.preventDefault();
-              event.stopPropagation();
-            }
+            // Prevenir el comportamiento por defecto para TODOS los hotspots
+            // para evitar que se abran dos ventanas
+            event.preventDefault();
+            event.stopPropagation();
             
             handleHotspotClick(hotspot);
           }
