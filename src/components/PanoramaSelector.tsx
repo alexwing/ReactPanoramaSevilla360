@@ -10,7 +10,7 @@ interface PanoramaSelectorProps {
   onSelectScene: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: PanoramaSelectorProps): JSX.Element {
+function PanoramaSelector({ scenes = [], currentScene, onSelectScene }: PanoramaSelectorProps): React.JSX.Element {
   const [selected, setSelected] = React.useState(currentScene);
 
   React.useEffect(() => {

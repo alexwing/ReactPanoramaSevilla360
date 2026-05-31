@@ -6,7 +6,7 @@ import "../i18n/config";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 
-import { getLang, getUrl } from "../lib/Utils";
+import { getLang } from "../lib/Utils";
 import { Check, Heart, ShieldShaded, Github } from "react-bootstrap-icons";
 import "./Info.css";
 import {
@@ -32,7 +32,7 @@ interface InfoProps {
   InfoClose: () => void;
 }
 
-function Info({ show = false, InfoClose }: InfoProps): JSX.Element | null {
+function Info({ show = false, InfoClose }: InfoProps): React.JSX.Element | null {
   const [showIn, setShowIn] = useState(false);
   const [markdown, setMarkdown] = useState("");
   const { t } = useTranslation();
@@ -58,7 +58,7 @@ function Info({ show = false, InfoClose }: InfoProps): JSX.Element | null {
     });
   }, [showIn]);
 
-  const url = "http://" + getUrl() + "/sevilla360/";
+  const url = `${window.location.origin}/`;
   const quote = t("info.quote");
   const hashtag = t("common.share.hashtag");
   const title = t("common.share.title");

@@ -19,7 +19,7 @@ interface MenuTopProps {
   currentSceneId: string;
 }
 
-const MenuTop = ({ multiRes, handleMultiRes, handleResetView, currentSceneId }: MenuTopProps): JSX.Element => {
+const MenuTop = ({ multiRes, handleMultiRes, handleResetView, currentSceneId }: MenuTopProps): React.JSX.Element => {
   const [showInfo, setShowInfo] = useState(false);
   const [currentLang, setCurrentLang] = useState("");
   const [langs, setLangs] = useState([] as WikiInfoLang[]);

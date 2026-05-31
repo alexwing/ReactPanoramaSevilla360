@@ -10,7 +10,7 @@ interface AlertMessageProps {
   onHide: () => void;
 }
 
-function AlertMessage({ show, alertMessage, onHide }: AlertMessageProps): JSX.Element {
+function AlertMessage({ show, alertMessage, onHide }: AlertMessageProps): React.JSX.Element {
   return (
     <Modal
       show={show}

@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "/sevilla360/",
   plugins: [
     react(),
     VitePWA({
@@ -36,5 +35,8 @@ export default defineConfig({
     }),
   ],
   server: { port: 3000 },
-  build: { outDir: "build" },
+  build: {
+    outDir: "build",
+    emptyOutDir: false,
+  },
 });

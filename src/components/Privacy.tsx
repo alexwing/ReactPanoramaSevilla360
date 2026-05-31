@@ -16,7 +16,7 @@ interface PrivacyProps {
   setShowIn: (show: boolean) => void;
 }
 
-function Privacy({ showIn, setShowIn }: PrivacyProps): JSX.Element | null {
+function Privacy({ showIn, setShowIn }: PrivacyProps): React.JSX.Element | null {
   const [markdown, setMarkdown] = useState("");
   const { t } = useTranslation();
 

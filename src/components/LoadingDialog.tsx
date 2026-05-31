@@ -7,7 +7,7 @@ interface LoadingDialogProps {
   delay?: number;
 }
 
-function LoadingDialog({ show, delay = 0 }: LoadingDialogProps): JSX.Element {
+function LoadingDialog({ show, delay = 0 }: LoadingDialogProps): React.JSX.Element {
   const [showSpinner, setShowSpinner] = React.useState(!delay);
 
   React.useEffect(() => {

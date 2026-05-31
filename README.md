@@ -6,21 +6,21 @@ El proyecto muestra varias versiones del panorama, permite cambiar de idioma, ac
 
 ![Sevilla 360](./public/ogimage.jpg)
 
-Demo pública: http://mappuzzle.xyz/sevilla360/
+Demo pública: pendiente de configurar en el subdominio dedicado.
 
 ## Stack
 
-- React 18
+- React 19
 - TypeScript
 - Vite 5
 - React Bootstrap
 - i18next / react-i18next
-- Pannellum mediante `react-pannellum`
+- Pannellum mediante `react-pannellum` 1.x
 - PWA con `vite-plugin-pwa`
 
 ## Requisitos
 
-- Node.js 18 o superior
+- Node.js 22 recomendado
 - npm
 - Assets panorámicos dentro de `public/`
 
@@ -45,10 +45,10 @@ Arranca Vite:
 npm run dev
 ```
 
-La app usa `base: "/sevilla360/"`, así que en local se abre en:
+La app se sirve desde la raíz del host, así que en local se abre en:
 
 ```text
-http://127.0.0.1:3000/sevilla360/
+http://127.0.0.1:3000/
 ```
 
 ## Scripts
@@ -73,6 +73,7 @@ npm run typecheck  # validación TypeScript sin emitir archivos
     |-- components/         # UI, menú, visor y modales
     |-- i18n/               # traducciones
     |-- services/           # configuración y APIs
+    |-- viewer/             # fachada propia sobre Pannellum
     `-- styles/             # estilos globales
 ```
 
@@ -152,6 +153,8 @@ Los assets panorámicos grandes se excluyen del precache para evitar builds pesa
 - `360photo*.jpg`
 - `images/**`
 
+El build no vacía `build/` automáticamente (`emptyOutDir: false`) porque los tiles panorámicos son grandes y en Windows pueden quedar bloqueados si un navegador o preview los está leyendo. Si necesitas un build totalmente limpio, cierra previews/navegadores que estén usando los panoramas y elimina `build/` manualmente antes de compilar.
+
 ## Generación de tiles
 
 El directorio `python/` contiene utilidades para generar tiles compatibles con Pannellum.
@@ -180,11 +183,13 @@ pip install numpy
 pip install pyshtools
 ```
 
-## Nota sobre React 19
+## Nota sobre el visor
 
-El proyecto está actualmente en React 18 porque es una base estable para `react-pannellum` 0.2.x.
+El proyecto usa React 19 y la rama moderna de `react-pannellum`.
 
-La rama moderna de `react-pannellum` ya declara soporte para React 18 y React 19, pero cambia parte de la API imperativa hacia `usePannellum`. Si se quiere subir a React 19, el cambio natural es migrar `src/components/Panorama.tsx` al wrapper moderno o sustituir el wrapper por una integración local directa de Pannellum.
+`src/viewer/PanoramaViewer.tsx` actúa como fachada propia del visor. Dentro usa `usePannellum` para exponer una API imperativa estable al resto de la aplicación (`getCamera`, `resetToInitial`) y conservar el comportamiento de cambio de panorama, restauración de cámara y hotspots.
+
+La dependencia instalada es `react-pannellum@1.1.2-alpha.1`. Al ser una versión alpha, conviene mantener `src/viewer/` como frontera de integración: si en el futuro queremos añadir más controles o si la alpha da problemas, esa capa se puede evolucionar hacia una integración directa con `pannellum` sin reescribir la app completa.
 
 ## Contexto histórico
 

@@ -20,7 +20,7 @@ function PuzzleOptions({
   handleInfo,
   handlePois,
   handleResetView,
-}: PuzzleOptionsProps): JSX.Element {
+}: PuzzleOptionsProps): React.JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
   const [ poisVisible, setPoisVisible ] = React.useState(true);
   const [ fullScreen, setFullScreen ] = React.useState(false);
@@ -117,7 +117,7 @@ function PuzzleOptions({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     return (useMediaQuery({ minWidth: 992 }) ? (
       <Tooltip id={`tooltip-${button.id}`}>{button.tooltip}</Tooltip>
-    ) : <span></span>) as JSX.Element;
+    ) : <span></span>) as React.JSX.Element;
   }, []); 
 
   return (

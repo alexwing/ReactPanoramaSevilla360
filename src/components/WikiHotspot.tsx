@@ -23,7 +23,7 @@ function WikiHotspot({
   show = false,
   onHide,
   hotspotData,
-}: WikiHotspotProps): JSX.Element {
+}: WikiHotspotProps): React.JSX.Element {
   const [wikiInfo, setWikiInfo] = useState({
     title: "",
     contents: [],
