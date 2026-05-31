@@ -6,13 +6,12 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "history": "^5.3.0",
-    "mdbreact": "^5.2.0",
-    "react": "^19.1.1",
     "axios": "^1.12.2",
+    "react": "^18.3.1",
     "react-bootstrap": "^2.10.10",
     "react-bootstrap-icons": "^1.11.6",
     "react-device-detect": "^2.2.3",
-    "react-dom": "^19.1.1",
+    "react-dom": "^18.3.1",
     "i18next": "^25.5.2",
     "react-i18next": "^15.7.3",
     "react-markdown": "^10.1.0",
@@ -20,21 +19,15 @@
     "react-responsive": "^10.0.1",
     "react-pannellum": "^0.2.16",
     "react-router-dom": "^7.9.1",
-    "react-scripts": "^5.0.1",
     "react-simple-cookie-store": "^1.0.12",
     "react-share": "^5.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "dev": "vite",
+    "pro": "vite --mode production",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit --strict --jsx react-jsx"
   },
   "browserslist": {
     "production": [
@@ -49,24 +42,22 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/react": "^18.3.2",
     "@types/react-bootstrap-table2-paginator": "^2.1.6",
+    "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
-    "env-cmd": "^11.0.0",
-    "eslint": "^9.36.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.1",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.1",
-    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-react": "^7.37.5",
     "http-server": "^14.1.1",
-    "react-refresh": "^0.17.0",
-    "so": "^1.0.1",
-  "ts-loader": "^9.5.4",
     "typescript": "^5.9.2",
-    "webpack": "5.101.3",
-    "webpack-cli": "^6.0.1"
+    "vite": "^5.4.2",
+    "vite-plugin-pwa": "^0.20.5"
   }
 }

@@ -21,6 +21,16 @@ This project use react-pannellum, a React component for Pannellum.
 
 Test in http://mappuzzle.xyz/sevilla360/
 
+## Development
+
+This project runs with Vite.
+
+```bash
+npm run dev
+npm run build
+npm run preview
+```
+
 ## History
 
 Conversion of 360º photo of the photos taken by Jean Laurent, the French photographer based in Spain who took 7 snapshots to form a large panorama of the river and its surroundings.
