@@ -8,6 +8,8 @@ import { Container } from "react-bootstrap";
 import { PanoramaMultiRes } from "./models/Interfaces";
 import { useTranslation } from "react-i18next";
 
+const panoramaTileVersion = "20260531-nona";
+
 const Main = () => {
   const { t, i18n } = useTranslation();
 
@@ -21,7 +23,7 @@ const Main = () => {
           basePath: "./360photo",
           path: "/%l/%s%y_%x",
           fallbackPath: "/fallback/%s",
-          extension: "jpg",
+          extension: `jpg?v=${panoramaTileVersion}`,
           tileResolution: 512,
           maxLevel: 6,
           cubeResolution: 11456,

@@ -24,6 +24,11 @@ type PanoramaHotspot = PanoramaViewerHotspot & {
   originalURL?: string;
 };
 
+const panoramaYawLimit = 100;
+const panoramaPitchLimit = 55;
+const navigationYawMargin = 15;
+const navigationPitchMargin = 10;
+
 const PanoramaInner = (
   { id, multiResScene, cameraState = null, onViewerReady, onCameraApplied }: PanoramaProps,
   ref: React.Ref<PanoramaHandle>
@@ -72,6 +77,11 @@ const PanoramaInner = (
       haov: 200,
       vaov: 110,
       vOffset: 0,
+      minYaw: -panoramaYawLimit - navigationYawMargin,
+      maxYaw: panoramaYawLimit + navigationYawMargin,
+      minPitch: -panoramaPitchLimit - navigationPitchMargin,
+      maxPitch: panoramaPitchLimit + navigationPitchMargin,
+      avoidShowingBackground: true,
       maxHfov: 120,
       minHfov: 20,
       compass: true,

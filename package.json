@@ -27,6 +27,7 @@
     "pro": "vite --mode production",
     "build": "vite build",
     "preview": "vite preview",
+    "tiles:360photo": "node scripts/regenerate-panorama-tiles.mjs",
     "typecheck": "tsc --noEmit --strict --jsx react-jsx"
   },
   "browserslist": {

@@ -157,17 +157,21 @@ El build no vacía `build/` automáticamente (`emptyOutDir: false`) porque los t
 
 ## Generación de tiles
 
-El directorio `python/` contiene utilidades para generar tiles compatibles con Pannellum.
+El mosaico principal se regenera desde la imagen `public/360photo.jpg` con:
 
-Ejemplo basado en `python/generate.bat`:
-
-```bat
-@echo off
-python generate.py -n "C:\Program Files\Hugin\bin\nona.exe" --hfov 80 --voffset 0 --haov 200 --vaov 110 ../public/images/360photo.jpg
-pause
+```bash
+npm run tiles:360photo
 ```
 
-Parámetros relevantes:
+Este comando reemplaza de forma segura `public/360photo` usando `scripts/regenerate-panorama-tiles.mjs`, que llama al generador oficial de Pannellum (`python/generate.py`) y a `nona.exe` de Hugin para hacer el remapeo cúbico.
+
+Por defecto busca `nona` en `C:\Program Files\Hugin\bin\nona.exe`. Si está en otra ruta:
+
+```powershell
+$env:NONA_BIN="D:\ruta\a\nona.exe"; npm run tiles:360photo
+```
+
+Parámetros configurados en el script:
 
 - `--hfov`: campo de visión horizontal inicial.
 - `--voffset`: desplazamiento vertical.
@@ -175,13 +179,14 @@ Parámetros relevantes:
 - `--vaov`: ángulo vertical cubierto por el panorama.
 - `-n`: ruta al binario `nona.exe` de Hugin.
 
-Dependencias Python usadas originalmente:
+Dependencias Python:
 
 ```bash
 pip install Pillow
 pip install numpy
-pip install pyshtools
 ```
+
+`pyshtools` es opcional; si no está instalado, el generador omite la preview SHT.
 
 ## Nota sobre el visor
 
